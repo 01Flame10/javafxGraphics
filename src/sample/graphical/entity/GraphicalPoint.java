@@ -24,7 +24,7 @@ public class GraphicalPoint extends GraphicalObject {
     public void draw(GraphicsContext context) {
         super.draw(context);
 
-        context.strokeArc(320, 10, 50, 50, 40, 80, ArcType.ROUND);;
+        context.fillOval(x, y, DRAW_RADIUS, DRAW_RADIUS);
     }
 
     public static ObservableList<String> parametersToObservableList() {
@@ -33,6 +33,11 @@ public class GraphicalPoint extends GraphicalObject {
                         .filter(field -> !field.getName().equals("DRAW_RADIUS"))
                         .map(field -> field.getName() + " =")
                         .collect(Collectors.toList()));
+    }
+
+    @Override
+    public boolean validate() {
+        return x > 0 && y > 0;
     }
 
     @Override

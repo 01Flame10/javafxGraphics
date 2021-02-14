@@ -2,6 +2,7 @@ package sample.graphical.entity;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.canvas.GraphicsContext;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,18 @@ public class GraphicalLine extends GraphicalObject {
                 Arrays.stream(GraphicalLine.class.getDeclaredFields())
                         .map(field -> field.getName() + " =")
                         .collect(Collectors.toList()));
+    }
+
+    @Override
+    public void draw(GraphicsContext context) {
+        context.strokeLine(startX, startY, endX, endY);
+    }
+
+    @Override
+    public boolean validate() {
+        return startX > 0 && startY > 0 &&
+                endX > 0 && endY > 0 &&
+                !(startX == endX && startY == endY);
     }
 
     @Override

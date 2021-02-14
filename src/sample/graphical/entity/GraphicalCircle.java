@@ -2,6 +2,7 @@ package sample.graphical.entity;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.canvas.GraphicsContext;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import sample.graphical.GraphicalObject;
@@ -20,6 +21,16 @@ public class GraphicalCircle extends GraphicalObject {
                 Arrays.stream(GraphicalCircle.class.getDeclaredFields())
                         .map(field -> field.getName() + " = ")
                         .collect(Collectors.toList()));
+    }
+
+    @Override
+    public void draw(GraphicsContext context) {
+        context.fillOval(centerX, centerY, radius, radius);
+    }
+
+    @Override
+    public boolean validate() {
+        return centerX > 0 && centerY > 0 && radius > 0;
     }
 
     @Override

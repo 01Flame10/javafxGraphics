@@ -15,7 +15,13 @@ public abstract class GraphicalObject {
 //        throw new ExecutionControl.NotImplementedException("Not implemented");
     }
 
+    public boolean validate() {
+        return false;
+    }
+
     public static ObservableList<String> parametersToObservableList() {
         return FXCollections.observableArrayList("No params");
     }
+
+
 }
