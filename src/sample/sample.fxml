@@ -78,9 +78,9 @@
                   <Button fx:id="highlightElementButton" layoutX="73.0" layoutY="198.0" mnemonicParsing="false" onAction="#onHighlightElement" text="Highlight" />
                </children>
             </AnchorPane>
-            <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+            <ScrollPane fx:id="scrollPanel" prefHeight="-1.0" prefWidth="-1.0">
                <content>
-                  <Canvas fx:id="graphTable" height="500.0" nodeOrientation="INHERIT" width="500.0" />
+                  <Canvas fx:id="graphTable" height="500.0" nodeOrientation="INHERIT" onMouseEntered="#onCreateCanvas" width="500.0" />
                </content>
             </ScrollPane>
             <AnchorPane prefHeight="513.0" prefWidth="215.0" SplitPane.resizableWithParent="false">

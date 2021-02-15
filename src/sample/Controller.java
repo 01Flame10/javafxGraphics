@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import sample.graphical.GraphicalObject;
 import sample.graphical.entity.GraphicalCircle;
 import sample.graphical.entity.GraphicalLine;
@@ -78,6 +75,22 @@ public class Controller implements Initializable {
     private Canvas graphTable;
 
     @FXML
+    private ScrollPane scrollPanel;
+
+    @FXML
+    public void onCreateCanvas() {
+        scrollPanel.widthProperty().addListener(event -> {
+            graphTable.setWidth(scrollPanel.getWidth());
+            redrawElements();
+        });
+        scrollPanel.heightProperty().addListener(event -> {
+            graphTable.setHeight(scrollPanel.getHeight());
+            redrawElements();
+        });
+    }
+
+
+    @FXML
     public void onObjectsToPlaceListReload() {
         objectsToPlaceList.setItems(FXCollections.observableArrayList(objectsFields.keySet()));
         objectsToPlaceList.getSelectionModel().selectedItemProperty()
@@ -92,6 +105,7 @@ public class Controller implements Initializable {
         objectsParametersList.getSelectionModel().selectedItemProperty()
                 .addListener((observableValue, oldValue, newValue) -> {
                     parameterValueInput.setPromptText("Value of " + observableValue.getValue());
+//                    parameterValueInput.setOnAction(event -> System.out.println("ENTER TAPPED"));
                     setParameterValueButton.setOnAction(event -> Arrays.stream(currentObject.getClass().getDeclaredFields())
                             .filter(field -> observableValue.getValue().startsWith(field.getName()))
                             .forEach(field -> {
@@ -135,8 +149,7 @@ public class Controller implements Initializable {
             createElementButton.setText("Create");
             createElementButton.setOnAction(anotherEvent -> onDrawElement());
 
-            graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
-            objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable.getGraphicsContext2D()));
+            redrawElements();
         });
     }
 
@@ -146,25 +159,11 @@ public class Controller implements Initializable {
         objectsPlacedList.setItems(
                 FXCollections.observableList(objectList.stream().map(Object::toString).collect(Collectors.toList())));
 
-        graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
-        objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable.getGraphicsContext2D()));
+        redrawElements();
     }
 
     @FXML
     public void onDrawElement() {
-//        List<String> errorFields = new ArrayList<>();
-//        for (Field field : currentObject.getClass().getDeclaredFields()) {
-//            try {
-//                field.setAccessible(true);
-//                if (currentObject.validate())
-//                    errorFields.add(field.getName());
-//                System.out.println("field " + field.getName() + " - " + field.get(currentObject));
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
-
         if (currentObject.validate()) {
             objectList.add(currentObject);
             objectsPlacedList.getItems().add(currentObject.toString());
@@ -174,11 +173,10 @@ public class Controller implements Initializable {
         } else {
             parameterErrorField.setText("Errors in parameters");
         }
+    }
 
-//        GraphicalLine.builder()
-//                .startX(50).startY(50)
-//                .endX(100).endY(100)
-//                .build().draw(graphTable.getGraphicsContext2D());
-//        graphTable.getGraphicsContext2D().strokeLine(200, 50, 300, 150);
+    private void redrawElements() {
+        graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
+        objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable.getGraphicsContext2D()));
     }
 }
