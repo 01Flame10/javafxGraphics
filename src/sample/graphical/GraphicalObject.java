@@ -15,6 +15,10 @@ public abstract class GraphicalObject {
 //        throw new ExecutionControl.NotImplementedException("Not implemented");
     }
 
+    public void erase(GraphicsContext context) {
+//        throw new ExecutionControl.NotImplementedException("Not implemented");
+    }
+
     public boolean validate() {
         return false;
     }

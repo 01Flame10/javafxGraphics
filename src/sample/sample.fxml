@@ -73,8 +73,8 @@
                      </textFill>
                   </Label>
                   <ListView fx:id="objectsPlacedList" layoutX="11.0" layoutY="42.0" prefHeight="146.0" prefWidth="200.0" />
-                  <Button fx:id="deleteElementButton" layoutX="10.0" layoutY="198.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Delete" />
-                  <Button fx:id="editElementButton" layoutX="149.0" layoutY="198.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="Edit" />
+                  <Button fx:id="deleteElementButton" layoutX="10.0" layoutY="198.0" mnemonicParsing="false" onAction="#obDeleteElement" prefHeight="26.0" prefWidth="62.0" text="Delete" />
+                  <Button fx:id="editElementButton" layoutX="149.0" layoutY="198.0" mnemonicParsing="false" onAction="#onEditElement" prefHeight="26.0" prefWidth="62.0" text="Edit" />
                   <Button fx:id="highlightElementButton" layoutX="73.0" layoutY="198.0" mnemonicParsing="false" onAction="#onHighlightElement" text="Highlight" />
                </children>
             </AnchorPane>

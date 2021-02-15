@@ -5,21 +5,19 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import sample.graphical.GraphicalObject;
 import sample.graphical.entity.GraphicalCircle;
 import sample.graphical.entity.GraphicalLine;
 import sample.graphical.entity.GraphicalLineSection;
 import sample.graphical.entity.GraphicalPoint;
 
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Controller implements Initializable {
 
@@ -81,7 +79,6 @@ public class Controller implements Initializable {
 
     @FXML
     public void onObjectsToPlaceListReload() {
-
         objectsToPlaceList.setItems(FXCollections.observableArrayList(objectsFields.keySet()));
         objectsToPlaceList.getSelectionModel().selectedItemProperty()
                 .addListener((observableValue, oldValue, newValue) -> {
@@ -117,6 +114,43 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    public void onEditElement() {
+        currentObject = objectList.get(objectsPlacedList.getSelectionModel().getSelectedIndex());
+        List<String> stringList = new ArrayList<>();
+        Arrays.stream(currentObject.getClass().getDeclaredFields())
+                .forEach(field -> {
+                    try {
+                        field.setAccessible(true);
+                        stringList.add(field.getName() + " = " + field.get(currentObject));
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                });
+        objectsParametersList.setItems(FXCollections.observableList(stringList));
+
+        createElementButton.setText("Edit");
+        createElementButton.setOnAction(event -> {
+            objectsPlacedList.getItems().set(objectsPlacedList.getSelectionModel().getSelectedIndex(), currentObject.toString());
+            objectsParametersList.setItems(FXCollections.emptyObservableList());
+            createElementButton.setText("Create");
+            createElementButton.setOnAction(anotherEvent -> onDrawElement());
+
+            graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
+            objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable.getGraphicsContext2D()));
+        });
+    }
+
+    @FXML
+    public void obDeleteElement() {
+        objectList.remove(objectsPlacedList.getSelectionModel().getSelectedIndex());
+        objectsPlacedList.setItems(
+                FXCollections.observableList(objectList.stream().map(Object::toString).collect(Collectors.toList())));
+
+        graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
+        objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable.getGraphicsContext2D()));
+    }
+
+    @FXML
     public void onDrawElement() {
 //        List<String> errorFields = new ArrayList<>();
 //        for (Field field : currentObject.getClass().getDeclaredFields()) {
@@ -129,7 +163,6 @@ public class Controller implements Initializable {
 //                e.printStackTrace();
 //            }
 //        }
-
 
 
         if (currentObject.validate()) {
@@ -146,7 +179,6 @@ public class Controller implements Initializable {
 //                .startX(50).startY(50)
 //                .endX(100).endY(100)
 //                .build().draw(graphTable.getGraphicsContext2D());
-        System.out.println(">> highlighting");
 //        graphTable.getGraphicsContext2D().strokeLine(200, 50, 300, 150);
     }
 }

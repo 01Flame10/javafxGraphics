@@ -27,6 +27,12 @@ public class GraphicalPoint extends GraphicalObject {
         context.fillOval(x, y, DRAW_RADIUS, DRAW_RADIUS);
     }
 
+    @Override
+    public void erase(GraphicsContext context) {
+        super.erase(context);
+
+    }
+
     public static ObservableList<String> parametersToObservableList() {
         return FXCollections.observableArrayList(
                 Arrays.stream(GraphicalPoint.class.getDeclaredFields())
