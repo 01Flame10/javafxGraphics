@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Data
 @Builder
 public class GraphicalPoint extends GraphicalObject {
-    private static final double DRAW_RADIUS = 1.0D;
+    private static final double DRAW_RADIUS = 10.0D;
 
     private int x;
     private int y;

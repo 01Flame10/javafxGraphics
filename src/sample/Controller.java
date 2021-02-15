@@ -2,6 +2,8 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -22,6 +24,7 @@ public class Controller implements Initializable {
     Map<String, GraphicalObject> objectNamesToClassReference;
     GraphicalObject currentObject;
     List<GraphicalObject> objectList;
+    ParameterEditAction parameterEditAction = new ParameterEditAction();
 
 
     @Override
@@ -96,8 +99,14 @@ public class Controller implements Initializable {
         objectsToPlaceList.getSelectionModel().selectedItemProperty()
                 .addListener((observableValue, oldValue, newValue) -> {
                     objectsParametersList.setItems(objectsFields.get(observableValue.getValue()));
-                    currentObject = objectNamesToClassReference.get(observableValue.getValue());
                 });
+    }
+
+    @FXML
+    public void onObjectToPlaceSelected() {
+        createElementButton.setText("Create");
+        createElementButton.setOnAction(anotherEvent -> onDrawElement());
+        currentObject = objectNamesToClassReference.get(objectsToPlaceList.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -105,20 +114,8 @@ public class Controller implements Initializable {
         objectsParametersList.getSelectionModel().selectedItemProperty()
                 .addListener((observableValue, oldValue, newValue) -> {
                     parameterValueInput.setPromptText("Value of " + observableValue.getValue());
-//                    parameterValueInput.setOnAction(event -> System.out.println("ENTER TAPPED"));
-                    setParameterValueButton.setOnAction(event -> Arrays.stream(currentObject.getClass().getDeclaredFields())
-                            .filter(field -> observableValue.getValue().startsWith(field.getName()))
-                            .forEach(field -> {
-                                try {
-                                    field.setAccessible(true);
-                                    field.set(currentObject, Integer.parseInt(parameterValueInput.getText().trim()));
-                                    objectsParametersList.getItems()
-                                            .set(objectsParametersList.getSelectionModel().getSelectedIndex(),
-                                                    field.getName() + " = " + parameterValueInput.getText());
-                                } catch (Exception e) {
-                                    parameterErrorField.setText(e.getMessage());
-                                }
-                            }));
+                    parameterValueInput.setOnAction(parameterEditAction);
+                    setParameterValueButton.setOnAction(parameterEditAction);
                 });
     }
 
@@ -178,5 +175,24 @@ public class Controller implements Initializable {
     private void redrawElements() {
         graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
         objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable.getGraphicsContext2D()));
+    }
+
+    private class ParameterEditAction implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            Arrays.stream(currentObject.getClass().getDeclaredFields())
+                    .filter(field -> objectsParametersList.getSelectionModel().getSelectedItem().startsWith(field.getName()))
+                    .forEach(field -> {
+                        try {
+                            field.setAccessible(true);
+                            field.set(currentObject, Integer.parseInt(parameterValueInput.getText().trim()));
+                            objectsParametersList.getItems()
+                                    .set(objectsParametersList.getSelectionModel().getSelectedIndex(),
+                                            field.getName() + " = " + parameterValueInput.getText());
+                        } catch (Exception e) {
+                            parameterErrorField.setText(e.getMessage());
+                        }
+                    });
+        }
     }
 }

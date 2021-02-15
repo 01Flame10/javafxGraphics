@@ -86,7 +86,7 @@
             <AnchorPane prefHeight="513.0" prefWidth="215.0" SplitPane.resizableWithParent="false">
                <children>
                   <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Elements to add" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                  <ListView fx:id="objectsToPlaceList" layoutX="10.0" layoutY="44.0" onMouseEntered="#onObjectsToPlaceListReload" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="objectsToPlaceList" layoutX="10.0" layoutY="44.0" onMouseClicked="#onObjectToPlaceSelected" onMouseEntered="#onObjectsToPlaceListReload" prefHeight="200.0" prefWidth="200.0" />
                   <ListView fx:id="objectsParametersList" layoutX="10.0" layoutY="253.0" onContextMenuRequested="#onParameterSelected" onEditStart="#onParameterSelected" onMouseEntered="#onParameterSelected" prefHeight="155.0" prefWidth="200.0" />
                   <Label fx:id="parameterErrorField" layoutX="10.0" layoutY="408.0" prefHeight="21.0" prefWidth="193.0" text="Errors" />
                   <Button fx:id="createElementButton" layoutX="119.0" layoutY="469.0" mnemonicParsing="false" onAction="#onDrawElement" text="Create" />
