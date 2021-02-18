@@ -2,9 +2,8 @@ package sample.graphical.entity;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.canvas.Canvas;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 import sample.graphical.GraphicalObject;
 
 import java.util.Arrays;
@@ -24,13 +23,24 @@ public class GraphicalCircle extends GraphicalObject {
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.fillOval(centerX, centerY, radius, radius);
+    public void draw(Canvas canvas) {
+        canvas.getGraphicsContext2D().fillOval(centerX, centerY,
+                radius * canvas.getScaleX(), radius * canvas.getScaleX());
     }
 
     @Override
     public boolean validate() {
         return centerX > 0 && centerY > 0 && radius > 0;
+    }
+
+    @Override
+    public int getMaxXCoordinate() {
+        return centerX + radius;
+    }
+
+    @Override
+    public int getMaxYCoordinate() {
+        return centerY + radius;
     }
 
     @Override
@@ -40,5 +50,14 @@ public class GraphicalCircle extends GraphicalObject {
                 ", centerY=" + centerY +
                 ", radius=" + radius +
                 '}';
+    }
+
+    @Override
+    public GraphicalObject clone() throws CloneNotSupportedException {
+        return GraphicalCircle.builder()
+                .centerX(this.centerX)
+                .centerY(this.centerY)
+                .radius(this.radius)
+                .build();
     }
 }

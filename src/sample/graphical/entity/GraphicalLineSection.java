@@ -2,11 +2,9 @@ package sample.graphical.entity;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Effect;
+import javafx.scene.canvas.Canvas;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import sample.graphical.GraphicalObject;
 
 import java.util.Arrays;
@@ -28,8 +26,11 @@ public class GraphicalLineSection extends GraphicalObject {
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.strokeLine(startX, startY, endX, endY);
+    public void draw(Canvas canvas) {
+        canvas.getGraphicsContext2D().strokeLine(startX * canvas.getScaleX(),
+                startY * canvas.getScaleY(),
+                endX * canvas.getScaleX(),
+                endY * canvas.getScaleY());
     }
 
     @Override
@@ -40,6 +41,16 @@ public class GraphicalLineSection extends GraphicalObject {
     }
 
     @Override
+    public int getMaxXCoordinate() {
+        return Math.max(startX, endX);
+    }
+
+    @Override
+    public int getMaxYCoordinate() {
+        return Math.max(startY, endY);
+    }
+
+    @Override
     public String toString() {
         return "LineSection{" +
                 "startX=" + startX +
@@ -47,5 +58,15 @@ public class GraphicalLineSection extends GraphicalObject {
                 ", endX=" + endX +
                 ", endY=" + endY +
                 '}';
+    }
+
+    @Override
+    public GraphicalObject clone() throws CloneNotSupportedException {
+        return GraphicalLineSection.builder()
+                .startX(this.startX)
+                .startY(this.startY)
+                .endX(this.endX)
+                .endY(this.endY)
+                .build();
     }
 }

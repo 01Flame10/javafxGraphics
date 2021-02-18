@@ -6,12 +6,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import lombok.SneakyThrows;
 import sample.graphical.GraphicalObject;
 import sample.graphical.entity.GraphicalCircle;
 import sample.graphical.entity.GraphicalLine;
 import sample.graphical.entity.GraphicalLineSection;
 import sample.graphical.entity.GraphicalPoint;
 
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,6 +26,9 @@ public class Controller implements Initializable {
     GraphicalObject currentObject;
     List<GraphicalObject> objectList;
 
+    boolean inited = false;
+
+    private static final int GRID_INTERVALS = 10;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,10 +63,22 @@ public class Controller implements Initializable {
     private Button setParameterValueButton;
 
     @FXML
+    private Button fitAllObjectsButton;
+
+    @FXML
+    private Button applyNewScaleButton;
+
+    @FXML
     private Label parameterErrorField;
 
     @FXML
+    private Label fixInErrorTextHolder;
+
+    @FXML
     private TextField parameterValueInput;
+
+    @FXML
+    private TextField scaleValueInput;
 
     @FXML
     private ListView<String> objectsPlacedList;
@@ -87,6 +105,12 @@ public class Controller implements Initializable {
             graphTable.setHeight(scrollPanel.getHeight());
             redrawElements();
         });
+
+        if (!inited) {
+            redrawElements();
+            scaleValueInput.setText("1.0");
+            inited = true;
+        }
     }
 
 
@@ -125,6 +149,8 @@ public class Controller implements Initializable {
     @FXML
     public void onHighlightElement() {
 //        graphTable.getGraphicsContext2D().;
+//        graphTable.scaleXProperty().set(2);
+//        graphTable.scaleYProperty().set(2);
     }
 
     @FXML
@@ -162,21 +188,68 @@ public class Controller implements Initializable {
         redrawElements();
     }
 
+    @SneakyThrows
     @FXML
     public void onDrawElement() {
         if (currentObject.validate()) {
-            objectList.add(currentObject);
+            objectList.add(currentObject.clone());
             objectsPlacedList.getItems().add(currentObject.toString());
 
-            currentObject.draw(graphTable.getGraphicsContext2D());
+            currentObject.draw(graphTable);
             currentObject = objectNamesToClassReference.get(objectsToPlaceList.getSelectionModel().getSelectedItem());
         } else {
             parameterErrorField.setText("Errors in parameters");
         }
     }
 
+    @FXML
+    private void resizeElements() {
+        double resizeScaleX = objectList.stream().mapToDouble(GraphicalObject::getMaxXCoordinate).max().orElse(0);
+        double resizeScaleY = objectList.stream().mapToDouble(GraphicalObject::getMaxYCoordinate).max().orElse(0);
+        if (resizeScaleX * resizeScaleY == 0) {
+            fixInErrorTextHolder.setText("Nothing to fit in");
+        } else {
+            fixInErrorTextHolder.setText("Fitted in");
+//            System.out.println("//>> Math.max(resizeScaleX, resizeScaleY) = " + Math.max(resizeScaleX, resizeScaleY));
+//            System.out.println("//>> Math.min(graphTable.getScaleX(), graphTable.getScaleY()) = " + Math.min(graphTable.getHeight(), graphTable.getWidth()));
+            double newScale = Math.min(graphTable.getHeight(), graphTable.getWidth()) / Math.max(resizeScaleX, resizeScaleY);
+            rescale(newScale);
+        }
+    }
+
     private void redrawElements() {
+//        System.out.println(">> redrawing with scale " + graphTable.getScaleX());
         graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
-        objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable.getGraphicsContext2D()));
+
+        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
+        for (double i = 0; i < graphTable.getWidth(); i += GRID_INTERVALS)
+            graphTable.getGraphicsContext2D().strokeLine(i, GRID_INTERVALS, i, graphTable.getHeight());
+
+        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
+        for (double i = graphTable.getHeight(); i > 0; i -= GRID_INTERVALS)
+            graphTable.getGraphicsContext2D().strokeLine(GRID_INTERVALS, i, graphTable.getWidth(), i);
+
+        objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable));
+        objectList.forEach(System.out::println);
+    }
+
+    @FXML
+    private void applyNewScale() {
+        try {
+            double newScale = Double.parseDouble(scaleValueInput.getText());
+            rescale(newScale);
+        } catch (Exception e) {
+            fixInErrorTextHolder.setText(e.getMessage());
+        }
+    }
+
+    private void rescale(double newScale) {
+        graphTable.setScaleX(newScale);
+        graphTable.setScaleY(newScale);
+        scaleValueInput.setPromptText("Scale: " + newScale);
+//        graphTable.setOnDragDetected(event -> event.get);
+        System.out.println(">> moved");
+        redrawElements();
+        graphTable.getGraphicsContext2D().moveTo(0,0);
     }
 }
