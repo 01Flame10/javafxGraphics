@@ -27,10 +27,10 @@ public class GraphicalLineSection extends GraphicalObject {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.getGraphicsContext2D().strokeLine(startX * canvas.getScaleX(),
-                startY * canvas.getScaleY(),
-                endX * canvas.getScaleX(),
-                endY * canvas.getScaleY());
+        canvas.getGraphicsContext2D().strokeLine(startX * canvas.getScaleZ(),
+                canvas.getHeight() - startY * canvas.getScaleZ(),
+                endX * canvas.getScaleZ(),
+                canvas.getHeight() - endY * canvas.getScaleZ());
     }
 
     @Override
@@ -61,7 +61,7 @@ public class GraphicalLineSection extends GraphicalObject {
     }
 
     @Override
-    public GraphicalObject clone() throws CloneNotSupportedException {
+    public GraphicalObject clone() {
         return GraphicalLineSection.builder()
                 .startX(this.startX)
                 .startY(this.startY)

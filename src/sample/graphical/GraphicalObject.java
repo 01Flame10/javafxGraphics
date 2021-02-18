@@ -29,7 +29,12 @@ public abstract class GraphicalObject implements Cloneable {
     }
 
     @Override
-    public GraphicalObject clone() throws CloneNotSupportedException {
-        return (GraphicalObject) super.clone();
+    public GraphicalObject clone() {
+        try {
+            return (GraphicalObject) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

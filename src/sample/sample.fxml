@@ -74,12 +74,15 @@
                   </Label>
                   <ListView fx:id="objectsPlacedList" layoutX="11.0" layoutY="42.0" prefHeight="146.0" prefWidth="200.0" />
                   <Button fx:id="deleteElementButton" layoutX="10.0" layoutY="198.0" mnemonicParsing="false" onAction="#obDeleteElement" prefHeight="26.0" prefWidth="62.0" text="Delete" />
-                  <Button fx:id="editElementButton" layoutX="149.0" layoutY="198.0" mnemonicParsing="false" onAction="#onEditElement" prefHeight="26.0" prefWidth="62.0" text="Edit" />
-                  <Button fx:id="highlightElementButton" layoutX="73.0" layoutY="198.0" mnemonicParsing="false" onAction="#onHighlightElement" text="Highlight" />
-                  <Button fx:id="fitAllObjectsButton" layoutX="18.0" layoutY="472.0" mnemonicParsing="false" onAction="#resizeElements" text="Fit all" />
-                  <Label fx:id="fixInErrorTextHolder" layoutX="80.0" layoutY="477.0" text="Label" />
-                  <Button fx:id="applyNewScaleButton" layoutX="18.0" layoutY="434.0" mnemonicParsing="false" onAction="#applyNewScale" text="Set scale" />
-                  <TextField fx:id="scaleValueInput" layoutX="93.0" layoutY="434.0" onAction="#applyNewScale" prefHeight="27.0" prefWidth="100.0" promptText="Scale" />
+                  <Button fx:id="editElementButton" layoutX="95.0" layoutY="231.0" mnemonicParsing="false" onAction="#onEditElement" prefHeight="26.0" prefWidth="60.0" text="Edit" />
+                  <Button fx:id="highlightElementButton" layoutX="78.0" layoutY="198.0" mnemonicParsing="false" onAction="#onHighlightElement" text="Highlight" />
+                  <Button fx:id="fitAllObjectsButton" layoutX="14.0" layoutY="472.0" mnemonicParsing="false" onAction="#resizeElements" text="Fit all" />
+                  <Label fx:id="fixInErrorTextHolder" layoutX="77.0" layoutY="477.0" prefHeight="16.0" prefWidth="144.0" />
+                  <Button fx:id="applyNewScaleButton" layoutX="12.0" layoutY="435.0" mnemonicParsing="false" onAction="#applyNewScale" text="Set scale" />
+                  <TextField fx:id="scaleValueInput" layoutX="93.0" layoutY="434.0" onAction="#applyNewScale" prefHeight="27.0" prefWidth="60.0" promptText="Scale" text="1.0" />
+                  <Button fx:id="executeGoalButton" layoutX="11.0" layoutY="264.0" mnemonicParsing="false" onAction="#onHighlightElement" prefHeight="26.0" prefWidth="144.0" text="Execute Goal" />
+                  <Button fx:id="deleteAllElementsButton" layoutX="10.0" layoutY="231.0" mnemonicParsing="false" onAction="#onDeleteAllElements" text="Delete all" />
+                  <Label fx:id="executionErrorsLabel" layoutX="14.0" layoutY="301.0" prefHeight="104.0" prefWidth="193.0" textFill="RED" wrapText="true" />
                </children>
             </AnchorPane>
             <ScrollPane fx:id="scrollPanel" prefHeight="-1.0" prefWidth="-1.0">
@@ -92,10 +95,10 @@
                   <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Elements to add" textAlignment="CENTER" textFill="$x2" wrapText="false" />
                   <ListView fx:id="objectsToPlaceList" layoutX="10.0" layoutY="44.0" onMouseClicked="#onObjectToPlaceSelected" onMouseEntered="#onObjectsToPlaceListReload" prefHeight="200.0" prefWidth="200.0" />
                   <ListView fx:id="objectsParametersList" layoutX="10.0" layoutY="253.0" onContextMenuRequested="#onParameterSelected" onEditStart="#onParameterSelected" onMouseEntered="#onParameterSelected" prefHeight="155.0" prefWidth="200.0" />
-                  <Label fx:id="parameterErrorField" layoutX="10.0" layoutY="408.0" prefHeight="21.0" prefWidth="193.0" text="Errors" />
-                  <Button fx:id="createElementButton" layoutX="119.0" layoutY="469.0" mnemonicParsing="false" onAction="#onDrawElement" text="Create" />
-                  <TextField fx:id="parameterValueInput" layoutX="10.0" layoutY="435.0" promptText="Value" />
-                  <Button fx:id="setParameterValueButton" layoutX="10.0" layoutY="469.0" mnemonicParsing="false" text="Set" />
+                  <Label fx:id="parameterErrorField" layoutX="10.0" layoutY="408.0" prefHeight="43.0" prefWidth="200.0" textFill="RED" wrapText="true" />
+                  <Button fx:id="createElementButton" layoutX="57.0" layoutY="486.0" mnemonicParsing="false" onAction="#onDrawElement" text="Create" />
+                  <TextField fx:id="parameterValueInput" layoutX="10.0" layoutY="451.0" prefHeight="26.0" prefWidth="200.0" promptText="Value" />
+                  <Button fx:id="setParameterValueButton" layoutX="10.0" layoutY="486.0" mnemonicParsing="false" text="Set" />
                </children>
             </AnchorPane>
          </items>

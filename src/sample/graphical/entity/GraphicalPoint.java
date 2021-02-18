@@ -21,8 +21,8 @@ public class GraphicalPoint extends GraphicalObject {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.getGraphicsContext2D().fillOval((x * canvas.getScaleX() - DRAW_RADIUS / 2),
-                (canvas.getHeight() - y * canvas.getScaleY() - DRAW_RADIUS / 2),
+        canvas.getGraphicsContext2D().fillOval((x * canvas.getScaleZ() - DRAW_RADIUS / 2),
+                (canvas.getHeight() - y * canvas.getScaleZ() - DRAW_RADIUS / 2),
                 DRAW_RADIUS, DRAW_RADIUS);
     }
 
@@ -58,7 +58,7 @@ public class GraphicalPoint extends GraphicalObject {
     }
 
     @Override
-    public GraphicalObject clone() throws CloneNotSupportedException {
+    public GraphicalPoint clone() {
         return GraphicalPoint.builder()
                 .x(this.x)
                 .y(this.y)

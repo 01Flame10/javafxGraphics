@@ -9,17 +9,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.util.Pair;
 import lombok.SneakyThrows;
 import sample.graphical.GraphicalObject;
+import sample.graphical.algorithm.QuickHull;
 import sample.graphical.entity.GraphicalCircle;
 import sample.graphical.entity.GraphicalLine;
 import sample.graphical.entity.GraphicalLineSection;
 import sample.graphical.entity.GraphicalPoint;
 
-import java.lang.reflect.Method;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Controller implements Initializable {
 
@@ -78,6 +82,9 @@ public class Controller implements Initializable {
     private Label fixInErrorTextHolder;
 
     @FXML
+    private Label executionErrorsLabel;
+
+    @FXML
     private TextField parameterValueInput;
 
     @FXML
@@ -111,7 +118,16 @@ public class Controller implements Initializable {
 
         if (!inited) {
             redrawElements();
-            scaleValueInput.setText("1.0");
+            graphTable.setOnMouseClicked(event -> {
+                GraphicalObject object = GraphicalPoint.builder()
+                        .x((int) event.getX())
+                        .y((int) (graphTable.getHeight() - (int) event.getY()))
+                        .build();
+                objectList.add(object);
+                objectsPlacedList.getItems().add(object.toString());
+
+                object.draw(graphTable);
+            });
             inited = true;
         }
     }
@@ -145,9 +161,35 @@ public class Controller implements Initializable {
 
     @FXML
     public void onHighlightElement() {
-//        graphTable.getGraphicsContext2D().;
-//        graphTable.scaleXProperty().set(2);
-//        graphTable.scaleYProperty().set(2);
+        List<GraphicalPoint> points = objectList.stream()
+                .filter(o -> o instanceof GraphicalPoint)
+                .map(o -> (GraphicalPoint) o)
+                .collect(Collectors.toList());
+
+        if (points.size() < 6) {
+            executionErrorsLabel.setText("Not enough points for drawing two hulls. Need at least 6, got " + points.size());
+        } else {
+            executionErrorsLabel.setText("");
+            for (GraphicalPoint point1 : points)
+                for (GraphicalPoint point2 : points)
+                    if (!point1.equals(point2)) {
+                        Supplier<Stream<Pair<GraphicalPoint, Integer>>> resultsSupplier = () -> points.stream()
+                                .filter(obj -> !obj.equals(point1) && !obj.equals(point2))
+                                .map(obj -> new Pair<>(obj, (obj.getX() - point1.getX()) * (point2.getY() - point1.getY())
+                                        - (obj.getY() - point1.getY()) * (point2.getX() - point1.getX())));
+
+                        long belowZero = resultsSupplier.get().filter(o -> o.getValue() < 0).count();
+                        if (resultsSupplier.get().anyMatch(o -> o.getValue().equals(0))) {
+                            continue; // нахрена это нужно?
+                        } else if (resultsSupplier.get().count() % 2 == 0 && belowZero == resultsSupplier.get().count() - belowZero) {
+                            drawHullsOnFound(point1, point2, resultsSupplier);
+                            return;
+                        } else if (resultsSupplier.get().count() % 2 == 1 && Math.abs(2 * belowZero - resultsSupplier.get().count()) == 1) {
+                            drawHullsOnFound(point1, point2, resultsSupplier);
+                            return;
+                        }
+                    }
+        }
     }
 
     @FXML
@@ -167,12 +209,16 @@ public class Controller implements Initializable {
 
         createElementButton.setText("Edit");
         createElementButton.setOnAction(event -> {
-            objectsPlacedList.getItems().set(objectsPlacedList.getSelectionModel().getSelectedIndex(), currentObject.toString());
-            objectsParametersList.setItems(FXCollections.emptyObservableList());
-            createElementButton.setText("Create");
-            createElementButton.setOnAction(anotherEvent -> onDrawElement());
+            if (objectList.stream().filter(o -> o.equals(currentObject)).count() > 1) {
+                parameterErrorField.setText("Another object with same params already exists");
+            } else {
+                objectsPlacedList.getItems().set(objectsPlacedList.getSelectionModel().getSelectedIndex(), currentObject.toString());
+                objectsParametersList.setItems(FXCollections.emptyObservableList());
+                createElementButton.setText("Create");
+                createElementButton.setOnAction(anotherEvent -> onDrawElement());
 
-            redrawElements();
+                redrawElements();
+            }
         });
     }
 
@@ -185,17 +231,29 @@ public class Controller implements Initializable {
         redrawElements();
     }
 
+    @FXML
+    public void onDeleteAllElements() {
+        objectList.clear();
+        objectsPlacedList.getItems().clear();
+
+        redrawElements();
+    }
+
     @SneakyThrows
     @FXML
     public void onDrawElement() {
         if (currentObject.validate()) {
-            objectList.add(currentObject.clone());
-            objectsPlacedList.getItems().add(currentObject.toString());
+            if (objectList.stream().anyMatch(o -> o.equals(currentObject))) {
+                parameterErrorField.setText("Object with these params already exists");
+            } else {
+                objectList.add(currentObject.clone());
+                objectsPlacedList.getItems().add(currentObject.toString());
 
-            currentObject.draw(graphTable);
-            currentObject = objectNamesToClassReference.get(objectsToPlaceList.getSelectionModel().getSelectedItem());
+                currentObject.draw(graphTable);
+                currentObject = objectNamesToClassReference.get(objectsToPlaceList.getSelectionModel().getSelectedItem());
+            }
         } else {
-            parameterErrorField.setText("Errors in parameters");
+            parameterErrorField.setText("Errors in parameters` values, check if they are above zero");
         }
     }
 
@@ -206,28 +264,13 @@ public class Controller implements Initializable {
         if (resizeScaleX * resizeScaleY == 0) {
             fixInErrorTextHolder.setText("Nothing to fit in");
         } else {
-            fixInErrorTextHolder.setText("Fitted in");
 //            System.out.println("//>> Math.max(resizeScaleX, resizeScaleY) = " + Math.max(resizeScaleX, resizeScaleY));
 //            System.out.println("//>> Math.min(graphTable.getScaleX(), graphTable.getScaleY()) = " + Math.min(graphTable.getHeight(), graphTable.getWidth()));
             double newScale = Math.min(graphTable.getHeight(), graphTable.getWidth()) / Math.max(resizeScaleX, resizeScaleY);
+//            System.out.println("//> " + newScale);
+            fixInErrorTextHolder.setText("Fitted in [~" + new DecimalFormat("#.##").format(newScale) + "]");
             rescale(newScale);
         }
-    }
-
-    private void redrawElements() {
-//        System.out.println(">> redrawing with scale " + graphTable.getScaleX());
-        graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
-
-        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
-        for (double i = 0; i < graphTable.getWidth(); i += GRID_INTERVALS)
-            graphTable.getGraphicsContext2D().strokeLine(i, GRID_INTERVALS, i, graphTable.getHeight());
-
-        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
-        for (double i = graphTable.getHeight(); i > 0; i -= GRID_INTERVALS)
-            graphTable.getGraphicsContext2D().strokeLine(GRID_INTERVALS, i, graphTable.getWidth(), i);
-
-        objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable));
-        objectList.forEach(System.out::println);
     }
 
     @FXML
@@ -240,14 +283,11 @@ public class Controller implements Initializable {
         }
     }
 
+
     private void rescale(double newScale) {
-        graphTable.setScaleX(newScale);
-        graphTable.setScaleY(newScale);
+        graphTable.setScaleZ(newScale);
         scaleValueInput.setPromptText("Scale: " + newScale);
-//        graphTable.setOnDragDetected(event -> event.get);
-        System.out.println(">> moved");
         redrawElements();
-        graphTable.getGraphicsContext2D().moveTo(0,0);
     }
 
     private class ParameterEditAction implements EventHandler<ActionEvent> {
@@ -262,10 +302,54 @@ public class Controller implements Initializable {
                             objectsParametersList.getItems()
                                     .set(objectsParametersList.getSelectionModel().getSelectedIndex(),
                                             field.getName() + " = " + parameterValueInput.getText());
+                            parameterErrorField.setText("");
                         } catch (Exception e) {
-                            parameterErrorField.setText(e.getMessage());
+                            parameterErrorField.setText("Invalid value of " + field.getName() + ": " + e.getMessage());
                         }
                     });
         }
     }
+
+    private void redrawElements() {
+        graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
+
+        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
+        for (double i = 0; i < graphTable.getWidth(); i += GRID_INTERVALS)
+            graphTable.getGraphicsContext2D().strokeLine(i, GRID_INTERVALS, i, graphTable.getHeight());
+
+        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
+        for (double i = graphTable.getHeight(); i > 0; i -= GRID_INTERVALS)
+            graphTable.getGraphicsContext2D().strokeLine(GRID_INTERVALS, i, graphTable.getWidth(), i);
+
+        objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable));
+        objectList.forEach(System.out::println);
+    }
+
+    private void drawHullsOnFound(GraphicalPoint point1, GraphicalPoint point2, Supplier<Stream<Pair<GraphicalPoint, Integer>>> resultsSupplier) {
+        drawHull(resultsSupplier.get()
+                .filter(o -> o.getValue() < 0)
+                .map(Pair::getKey)
+                .collect(Collectors.toList()), point1);
+        drawHull(resultsSupplier.get()
+                .filter(o -> o.getValue() > 0)
+                .map(Pair::getKey)
+                .collect(Collectors.toList()), point2);
+    }
+
+    private void drawHull(List<GraphicalPoint> points, GraphicalPoint additionalPoint) {
+        points.add(additionalPoint);
+        QuickHull qh = new QuickHull(points.toArray(GraphicalPoint[]::new));
+        graphTable.getGraphicsContext2D().beginPath();
+        qh.getHullPointsAsVector().forEach(o -> {
+            System.out.println("hull " + o);
+            graphTable.getGraphicsContext2D().lineTo(o.getX(), graphTable.getHeight() - o.getY());
+        });
+
+        graphTable.getGraphicsContext2D().closePath();
+//        graphTable.getGraphicsContext2D().setFill(Color.GRAY);
+//        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
+        graphTable.getGraphicsContext2D().stroke();
+    }
+
+
 }

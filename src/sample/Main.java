@@ -15,7 +15,6 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.stage.Stage;
-import sample.graphical.elements.ScrollableList;
 import sample.graphical.entity.GraphicalLine;
 import sample.graphical.entity.GraphicalPoint;
 

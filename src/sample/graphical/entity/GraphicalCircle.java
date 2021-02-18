@@ -24,8 +24,8 @@ public class GraphicalCircle extends GraphicalObject {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.getGraphicsContext2D().fillOval(centerX, centerY,
-                radius * canvas.getScaleX(), radius * canvas.getScaleX());
+        canvas.getGraphicsContext2D().fillOval(centerX * canvas.getScaleZ() - radius * canvas.getScaleZ() / 2, canvas.getHeight() - centerY * canvas.getScaleZ() - radius * canvas.getScaleZ() / 2,
+                radius * canvas.getScaleZ(), radius * canvas.getScaleZ());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GraphicalCircle extends GraphicalObject {
     }
 
     @Override
-    public GraphicalObject clone() throws CloneNotSupportedException {
+    public GraphicalObject clone() {
         return GraphicalCircle.builder()
                 .centerX(this.centerX)
                 .centerY(this.centerY)
