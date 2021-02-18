@@ -2,20 +2,13 @@ package sample.graphical;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.canvas.GraphicsContext;
-import jdk.jshell.spi.ExecutionControl;
-import lombok.Data;
+import javafx.scene.canvas.Canvas;
 import lombok.NoArgsConstructor;
-import sample.graphical.entity.GraphicalPoint;
 
 
 @NoArgsConstructor
-public abstract class GraphicalObject {
-    public void draw(GraphicsContext context) {
-//        throw new ExecutionControl.NotImplementedException("Not implemented");
-    }
-
-    public void erase(GraphicsContext context) {
+public abstract class GraphicalObject implements Cloneable {
+    public void draw(Canvas canvas) {
 //        throw new ExecutionControl.NotImplementedException("Not implemented");
     }
 
@@ -27,5 +20,16 @@ public abstract class GraphicalObject {
         return FXCollections.observableArrayList("No params");
     }
 
+    public int getMaxXCoordinate() {
+        return 0;
+    }
 
+    public int getMaxYCoordinate() {
+        return 0;
+    }
+
+    @Override
+    public GraphicalObject clone() throws CloneNotSupportedException {
+        return (GraphicalObject) super.clone();
+    }
 }

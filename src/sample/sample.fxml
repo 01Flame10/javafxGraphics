@@ -76,6 +76,10 @@
                   <Button fx:id="deleteElementButton" layoutX="10.0" layoutY="198.0" mnemonicParsing="false" onAction="#obDeleteElement" prefHeight="26.0" prefWidth="62.0" text="Delete" />
                   <Button fx:id="editElementButton" layoutX="149.0" layoutY="198.0" mnemonicParsing="false" onAction="#onEditElement" prefHeight="26.0" prefWidth="62.0" text="Edit" />
                   <Button fx:id="highlightElementButton" layoutX="73.0" layoutY="198.0" mnemonicParsing="false" onAction="#onHighlightElement" text="Highlight" />
+                  <Button fx:id="fitAllObjectsButton" layoutX="18.0" layoutY="472.0" mnemonicParsing="false" onAction="#resizeElements" text="Fit all" />
+                  <Label fx:id="fixInErrorTextHolder" layoutX="80.0" layoutY="477.0" text="Label" />
+                  <Button fx:id="applyNewScaleButton" layoutX="18.0" layoutY="434.0" mnemonicParsing="false" onAction="#applyNewScale" text="Set scale" />
+                  <TextField fx:id="scaleValueInput" layoutX="93.0" layoutY="434.0" onAction="#applyNewScale" prefHeight="27.0" prefWidth="100.0" promptText="Scale" />
                </children>
             </AnchorPane>
             <ScrollPane fx:id="scrollPanel" prefHeight="-1.0" prefWidth="-1.0">
