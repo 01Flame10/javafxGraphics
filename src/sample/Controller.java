@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 import lombok.SneakyThrows;
 import sample.graphical.GraphicalObject;
@@ -27,13 +29,13 @@ import java.util.stream.Stream;
 
 public class Controller implements Initializable {
 
-    Map<String, ObservableList<String>> objectsFields;
-    Map<String, GraphicalObject> objectNamesToClassReference;
-    GraphicalObject currentObject;
-    List<GraphicalObject> objectList;
-    ParameterEditAction parameterEditAction = new ParameterEditAction();
+    private Map<String, ObservableList<String>> objectsFields;
+    private Map<String, GraphicalObject> objectNamesToClassReference;
+    private GraphicalObject currentObject;
+    private List<GraphicalObject> objectList;
+    private ParameterEditAction parameterEditAction = new ParameterEditAction();
 
-    boolean inited = false;
+    private boolean inited = false;
 
     private static final int GRID_INTERVALS = 10;
 
@@ -52,6 +54,8 @@ public class Controller implements Initializable {
         objectNamesToClassReference.put("Circle", GraphicalCircle.builder().build());
 
         objectList = new ArrayList<>();
+
+        System.out.println(fitAllObjectsButton == null);
     }
 
     @FXML
@@ -123,10 +127,15 @@ public class Controller implements Initializable {
                         .x((int) event.getX())
                         .y((int) (graphTable.getHeight() - (int) event.getY()))
                         .build();
-                objectList.add(object);
-                objectsPlacedList.getItems().add(object.toString());
 
-                object.draw(graphTable);
+                if (objectList.stream().anyMatch(o -> o.equals(object))) {
+                    executionErrorsLabel.setText("Object with these params already exists");
+                } else {
+                    objectList.add(object);
+                    objectsPlacedList.getItems().add(object.toString());
+
+                    object.draw(graphTable);
+                }
             });
             inited = true;
         }
@@ -161,6 +170,13 @@ public class Controller implements Initializable {
 
     @FXML
     public void onHighlightElement() {
+        graphTable.getGraphicsContext2D().setFill(Color.RED);
+        objectList.get(objectsPlacedList.getSelectionModel().getSelectedIndex()).draw(graphTable);
+        graphTable.getGraphicsContext2D().setFill(Color.BLACK);
+    }
+
+    @FXML
+    public void onExecuteGoal() {
         List<GraphicalPoint> points = objectList.stream()
                 .filter(o -> o instanceof GraphicalPoint)
                 .map(o -> (GraphicalPoint) o)
@@ -182,14 +198,19 @@ public class Controller implements Initializable {
                         if (resultsSupplier.get().anyMatch(o -> o.getValue().equals(0))) {
                             continue; // нахрена это нужно?
                         } else if (resultsSupplier.get().count() % 2 == 0 && belowZero == resultsSupplier.get().count() - belowZero) {
+                            resizeElements();
                             drawHullsOnFound(point1, point2, resultsSupplier);
+
                             return;
                         } else if (resultsSupplier.get().count() % 2 == 1 && Math.abs(2 * belowZero - resultsSupplier.get().count()) == 1) {
+                            resizeElements();
                             drawHullsOnFound(point1, point2, resultsSupplier);
+
                             return;
                         }
                     }
         }
+
     }
 
     @FXML
@@ -264,10 +285,10 @@ public class Controller implements Initializable {
         if (resizeScaleX * resizeScaleY == 0) {
             fixInErrorTextHolder.setText("Nothing to fit in");
         } else {
-//            System.out.println("//>> Math.max(resizeScaleX, resizeScaleY) = " + Math.max(resizeScaleX, resizeScaleY));
-//            System.out.println("//>> Math.min(graphTable.getScaleX(), graphTable.getScaleY()) = " + Math.min(graphTable.getHeight(), graphTable.getWidth()));
+            System.out.println("//>> Math.max(resizeScaleX, resizeScaleY) = " + Math.max(resizeScaleX, resizeScaleY));
+            System.out.println("//>> Math.min(graphTable.getScaleX(), graphTable.getScaleY()) = " + Math.min(graphTable.getHeight(), graphTable.getWidth()));
             double newScale = Math.min(graphTable.getHeight(), graphTable.getWidth()) / Math.max(resizeScaleX, resizeScaleY);
-//            System.out.println("//> " + newScale);
+            System.out.println("//> " + newScale);
             fixInErrorTextHolder.setText("Fitted in [~" + new DecimalFormat("#.##").format(newScale) + "]");
             rescale(newScale);
         }
@@ -311,6 +332,7 @@ public class Controller implements Initializable {
     }
 
     private void redrawElements() {
+
         graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
 
         graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
@@ -323,9 +345,11 @@ public class Controller implements Initializable {
 
         objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable));
         objectList.forEach(System.out::println);
+
     }
 
     private void drawHullsOnFound(GraphicalPoint point1, GraphicalPoint point2, Supplier<Stream<Pair<GraphicalPoint, Integer>>> resultsSupplier) {
+                redrawElements();
         drawHull(resultsSupplier.get()
                 .filter(o -> o.getValue() < 0)
                 .map(Pair::getKey)
@@ -338,12 +362,11 @@ public class Controller implements Initializable {
 
     private void drawHull(List<GraphicalPoint> points, GraphicalPoint additionalPoint) {
         points.add(additionalPoint);
-        QuickHull qh = new QuickHull(points.toArray(GraphicalPoint[]::new));
+        QuickHull quickHull = new QuickHull(points.toArray(new GraphicalPoint[0]));
         graphTable.getGraphicsContext2D().beginPath();
-        qh.getHullPointsAsVector().forEach(o -> {
-            System.out.println("hull " + o);
-            graphTable.getGraphicsContext2D().lineTo(o.getX(), graphTable.getHeight() - o.getY());
-        });
+        quickHull.getHullPointsAsVector().forEach(o ->
+                graphTable.getGraphicsContext2D().lineTo(o.getX() * graphTable.getScaleZ(),
+                        graphTable.getHeight() - o.getY() * graphTable.getScaleZ()));
 
         graphTable.getGraphicsContext2D().closePath();
 //        graphTable.getGraphicsContext2D().setFill(Color.GRAY);

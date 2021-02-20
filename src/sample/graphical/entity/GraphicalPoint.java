@@ -3,11 +3,13 @@ package sample.graphical.entity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 import lombok.Builder;
 import lombok.Data;
 import sample.graphical.GraphicalObject;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
@@ -21,8 +23,10 @@ public class GraphicalPoint extends GraphicalObject {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.getGraphicsContext2D().fillOval((x * canvas.getScaleZ() - DRAW_RADIUS / 2),
-                (canvas.getHeight() - y * canvas.getScaleZ() - DRAW_RADIUS / 2),
+//        System.out.println("x " + (x < canvas.getWidth() / 2 ? -1 : 1));
+//        System.out.println("y " + (y < canvas.getHeight() / 2 ? -1 : 1));
+        canvas.getGraphicsContext2D().fillOval((x * (canvas.getScaleZ())/* * (x < canvas.getWidth() / 2 ? -1 : 1))*/ - DRAW_RADIUS / 2),
+                (canvas.getHeight() - y * (canvas.getScaleZ())/* * (y < canvas.getHeight() / 2 ? -1 : 1))*/ - DRAW_RADIUS / 2),
                 DRAW_RADIUS, DRAW_RADIUS);
     }
 
@@ -63,5 +67,19 @@ public class GraphicalPoint extends GraphicalObject {
                 .x(this.x)
                 .y(this.y)
                 .build();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GraphicalPoint point = (GraphicalPoint) o;
+        return x == point.x &&
+                y == point.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

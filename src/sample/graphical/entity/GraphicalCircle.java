@@ -7,6 +7,7 @@ import lombok.Builder;
 import sample.graphical.GraphicalObject;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Builder
@@ -59,5 +60,20 @@ public class GraphicalCircle extends GraphicalObject {
                 .centerY(this.centerY)
                 .radius(this.radius)
                 .build();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GraphicalCircle that = (GraphicalCircle) o;
+        return centerX == that.centerX &&
+                centerY == that.centerY &&
+                radius == that.radius;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(centerX, centerY, radius);
     }
 }

@@ -8,6 +8,7 @@ import lombok.Data;
 import sample.graphical.GraphicalObject;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
@@ -68,5 +69,21 @@ public class GraphicalLineSection extends GraphicalObject {
                 .endX(this.endX)
                 .endY(this.endY)
                 .build();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GraphicalLineSection that = (GraphicalLineSection) o;
+        return startX == that.startX &&
+                startY == that.startY &&
+                endX == that.endX &&
+                endY == that.endY;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startX, startY, endX, endY);
     }
 }
