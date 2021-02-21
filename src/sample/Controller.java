@@ -309,7 +309,13 @@ public class Controller implements Initializable {
 
     @FXML
     private void onShowAbout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("Piece of software");
+        alert.setContentText("Simple program to create two hulls\nthat do not intersect. " +
+                "\nPoints can be placed with Create-Edit\nmenu and mouse left-click.");
 
+        alert.showAndWait();
     }
 
 
