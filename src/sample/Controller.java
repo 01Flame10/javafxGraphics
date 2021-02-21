@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -121,11 +122,13 @@ public class Controller implements Initializable {
         });
 
         if (!inited) {
+            graphTable.getGraphicsContext2D().setFont(new Font(Font.getDefault().getName(), 10));
+
             redrawElements();
             graphTable.setOnMouseClicked(event -> {
                 GraphicalObject object = GraphicalPoint.builder()
-                        .x((int) event.getX())
-                        .y((int) (graphTable.getHeight() - (int) event.getY()))
+                        .x((int) (event.getX() / (graphTable.getScaleZ())))
+                        .y((int) ((graphTable.getHeight() - event.getY()) / (graphTable.getScaleZ())))
                         .build();
 
                 if (objectList.stream().anyMatch(o -> o.equals(object))) {
@@ -304,6 +307,11 @@ public class Controller implements Initializable {
         }
     }
 
+    @FXML
+    private void onShowAbout() {
+
+    }
+
 
     private void rescale(double newScale) {
         graphTable.setScaleZ(newScale);
@@ -332,16 +340,25 @@ public class Controller implements Initializable {
     }
 
     private void redrawElements() {
-
         graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
 
-        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
-        for (double i = 0; i < graphTable.getWidth(); i += GRID_INTERVALS)
-            graphTable.getGraphicsContext2D().strokeLine(i, GRID_INTERVALS, i, graphTable.getHeight());
+        double lineParameter = GRID_INTERVALS * graphTable.getScaleZ();
+
+        int counter = 0;
 
         graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
-        for (double i = graphTable.getHeight(); i > 0; i -= GRID_INTERVALS)
-            graphTable.getGraphicsContext2D().strokeLine(GRID_INTERVALS, i, graphTable.getWidth(), i);
+        for (double i = 0; i < graphTable.getWidth(); i += lineParameter) {
+            graphTable.getGraphicsContext2D().strokeLine(i, 0, i, graphTable.getHeight());
+//            graphTable.getGraphicsContext2D().strokeText(String.valueOf(counter), i, graphTable.getHeight());
+//            counter += 10;
+        }
+
+        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
+        for (double i = graphTable.getHeight(); i > 0; i -= lineParameter) {
+            graphTable.getGraphicsContext2D().strokeLine(0, i, graphTable.getWidth(), i);
+            graphTable.getGraphicsContext2D().strokeText(String.valueOf(counter), 0, i);
+            counter += 10;
+        }
 
         objectList.forEach(graphicalObject -> graphicalObject.draw(graphTable));
         objectList.forEach(System.out::println);

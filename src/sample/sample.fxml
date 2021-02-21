@@ -85,7 +85,7 @@
                   <Label fx:id="executionErrorsLabel" layoutX="14.0" layoutY="301.0" prefHeight="104.0" prefWidth="193.0" textFill="RED" wrapText="true" />
                </children>
             </AnchorPane>
-            <ScrollPane fx:id="scrollPanel" prefHeight="-1.0" prefWidth="-1.0">
+            <ScrollPane fx:id="scrollPanel" hbarPolicy="NEVER" prefHeight="-1.0" prefWidth="-1.0" vbarPolicy="NEVER">
                <content>
                   <Canvas fx:id="graphTable" height="500.0" nodeOrientation="INHERIT" onMouseEntered="#onCreateCanvas" width="500.0" />
                </content>
