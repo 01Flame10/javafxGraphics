@@ -10,17 +10,14 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Pair;
 import lombok.SneakyThrows;
 import sample.graphical.GraphicalObject;
 import sample.graphical.algorithm.QuickHull;
-import sample.graphical.entity.GraphicalCircle;
-import sample.graphical.entity.GraphicalLine;
-import sample.graphical.entity.GraphicalLineSection;
-import sample.graphical.entity.GraphicalPoint;
+import sample.graphical.entity.*;
+import sample.graphical.xml.Parser;
 
+import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -180,40 +177,11 @@ public class Controller implements Initializable {
 
     @FXML
     public void onExecuteGoal() {
-        List<GraphicalPoint> points = objectList.stream()
-                .filter(o -> o instanceof GraphicalPoint)
-                .map(o -> (GraphicalPoint) o)
-                .collect(Collectors.toList());
-
-        if (points.size() < 6) {
-            executionErrorsLabel.setText("Not enough points for drawing two hulls. Need at least 6, got " + points.size());
-        } else {
-            executionErrorsLabel.setText("");
-            for (GraphicalPoint point1 : points)
-                for (GraphicalPoint point2 : points)
-                    if (!point1.equals(point2)) {
-                        Supplier<Stream<Pair<GraphicalPoint, Integer>>> resultsSupplier = () -> points.stream()
-                                .filter(obj -> !obj.equals(point1) && !obj.equals(point2))
-                                .map(obj -> new Pair<>(obj, (obj.getX() - point1.getX()) * (point2.getY() - point1.getY())
-                                        - (obj.getY() - point1.getY()) * (point2.getX() - point1.getX())));
-
-                        long belowZero = resultsSupplier.get().filter(o -> o.getValue() < 0).count();
-                        if (resultsSupplier.get().anyMatch(o -> o.getValue().equals(0))) {
-                            continue; // нахрена это нужно?
-                        } else if (resultsSupplier.get().count() % 2 == 0 && belowZero == resultsSupplier.get().count() - belowZero) {
-                            resizeElements();
-                            drawHullsOnFound(point1, point2, resultsSupplier);
-
-                            return;
-                        } else if (resultsSupplier.get().count() % 2 == 1 && Math.abs(2 * belowZero - resultsSupplier.get().count()) == 1) {
-                            resizeElements();
-                            drawHullsOnFound(point1, point2, resultsSupplier);
-
-                            return;
-                        }
-                    }
-        }
-
+        Parser parser = new Parser();
+        GraphicalPicture picture = parser.parse();
+        objectList.add(picture);
+        objectsPlacedList.getItems().add(picture.toString());
+        picture.draw(graphTable);
     }
 
     @FXML
@@ -221,9 +189,11 @@ public class Controller implements Initializable {
         currentObject = objectList.get(objectsPlacedList.getSelectionModel().getSelectedIndex());
         List<String> stringList = new ArrayList<>();
         Arrays.stream(currentObject.getClass().getDeclaredFields())
+                .filter(field -> !Modifier.isFinal(field.getModifiers()))
                 .forEach(field -> {
                     try {
                         field.setAccessible(true);
+                        System.out.println(field.getName() + " - " + field.getModifiers() + " / " + Modifier.FINAL);
                         stringList.add(field.getName() + " = " + field.get(currentObject));
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
@@ -288,10 +258,7 @@ public class Controller implements Initializable {
         if (resizeScaleX * resizeScaleY == 0) {
             fixInErrorTextHolder.setText("Nothing to fit in");
         } else {
-            System.out.println("//>> Math.max(resizeScaleX, resizeScaleY) = " + Math.max(resizeScaleX, resizeScaleY));
-            System.out.println("//>> Math.min(graphTable.getScaleX(), graphTable.getScaleY()) = " + Math.min(graphTable.getHeight(), graphTable.getWidth()));
             double newScale = Math.min(graphTable.getHeight(), graphTable.getWidth()) / Math.max(resizeScaleX, resizeScaleY);
-            System.out.println("//> " + newScale);
             fixInErrorTextHolder.setText("Fitted in [~" + new DecimalFormat("#.##").format(newScale) + "]");
             rescale(newScale);
         }
