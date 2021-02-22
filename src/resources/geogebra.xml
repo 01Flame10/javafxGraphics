@@ -1,0 +1,1787 @@
+<?xml version="1.0" encoding="utf-8"?>
+<geogebra format="5.0" version="5.0.625.0" app="geometry" platform="w" id="5D1A2D81-234A-42B0-865A-C4D1EAE785AD"  xsi:noNamespaceSchemaLocation="http://www.geogebra.org/apps/xsd/ggb.xsd" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+<gui>
+	<window width="3440" height="1217" />
+	<perspectives>
+<perspective id="tmp">
+	<panes>
+		<pane location="" divider="0.11046511627906977" orientation="1" />
+	</panes>
+	<views>
+		<view id="4097" visible="false" inframe="false" stylebar="true" location="1,1,1,1" size="400" window="100,100,700,550" />
+		<view id="512" toolbar="0 | 1 501 5 19 , 67 | 2 15 45 18 , 7 37 | 514 3 9 , 13 44 , 47 | 16 51 | 551 550 11 ,  20 22 21 23 , 55 56 57 , 12 | 69 | 510 511 , 512 513 | 533 531 , 534 532 , 522 523 , 537 536 , 535 , 538 | 521 520 | 36 , 38 49 560 | 571 30 29 570 31 33 | 17 | 540 40 41 42 , 27 28 35 , 6 , 502" visible="false" inframe="false" stylebar="false" location="1,1,1" size="500" window="100,100,600,400" />
+		<view id="4" toolbar="0 || 2020 , 2021 , 2022 || 2001 , 2003 , 2002 , 2004 , 2005 || 2040 , 2041 , 2042 , 2044 , 2043" visible="false" inframe="false" stylebar="false" location="1,1" size="300" window="100,100,600,400" />
+		<view id="8" toolbar="1001 | 1002 | 1003  || 1005 | 1004 || 1006 | 1007 | 1010 || 1008 | 1009 || 6" visible="false" inframe="false" stylebar="false" location="1,3" size="300" window="100,100,600,400" />
+		<view id="1" visible="true" inframe="false" stylebar="false" location="1" size="3060" window="100,100,600,400" />
+		<view id="2" visible="true" inframe="false" stylebar="false" location="3" size="380" tab="TOOLS" window="100,100,250,400" />
+		<view id="16" visible="false" inframe="false" stylebar="false" location="1" size="300" window="50,50,500,500" />
+		<view id="32" visible="false" inframe="false" stylebar="true" location="1" size="300" window="50,50,500,500" />
+		<view id="64" toolbar="0" visible="false" inframe="false" stylebar="false" location="1" size="480" window="50,50,500,500" />
+		<view id="128" visible="false" inframe="false" stylebar="false" location="1" size="480" window="50,50,500,500" />
+		<view id="70" toolbar="0 || 2020 || 2021 || 2022" visible="false" inframe="false" stylebar="true" location="1" size="900" window="50,50,500,500" />
+	</views>
+	<toolbar show="true" items="0 77 73 62 | 1 501 67 , 5 19 , 72 75 76 | 2 15 45 , 18 65 , 7 37 | 4 3 8 9 , 13 44 , 58 , 47 | 16 51 64 , 70 | 10 34 53 11 , 24  20 22 , 21 23 | 55 56 57 , 12 | 36 46 , 38 49  50 , 71  14  68 | 30 29 54 32 31 33 | 25 17 26 60 52 61 | 40 41 42 , 27 28 35 , 6" position="1" help="false" />
+	<input show="true" cmd="true" top="algebra" />
+	<dockBar show="false" east="false" />
+</perspective>
+	</perspectives>
+	<labelingStyle  val="3"/>
+	<font  size="16"/>
+</gui>
+<euclidianView>
+	<viewNumber viewNo="1"/>
+	<size  width="3060" height="1217"/>
+	<coordSystem xZero="2889.0283909465616" yZero="277.43512519452787" scale="117.23290553781473" yscale="117.23290553781523"/>
+	<evSettings axes="false" grid="false" gridIsBold="false" pointCapturing="3" rightAngleStyle="1" checkboxSize="26" gridType="3"/>
+	<bgColor r="255" g="255" b="255"/>
+	<axesColor r="0" g="0" b="0"/>
+	<gridColor r="192" g="192" b="192"/>
+	<lineStyle axes="1" grid="0"/>
+	<axis id="0" show="false" label="" unitLabel="" tickStyle="1" showNumbers="true"/>
+	<axis id="1" show="false" label="" unitLabel="" tickStyle="1" showNumbers="true"/>
+</euclidianView>
+<algebraView>
+	<mode val="3"/>
+</algebraView>
+<kernel>
+	<continuous val="false"/>
+	<usePathAndRegionParameters val="true"/>
+	<decimals val="1"/>
+	<angleUnit val="degree"/>
+	<algebraStyle val="1" spreadsheet="1"/>
+	<coordStyle val="0"/>
+</kernel>
+<tableview min="-2" max="2" step="1"/>
+<scripting blocked="false" disabled="false"/>
+<construction title="" author="" date="">
+<element type="point" label="A">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-18.356" y="-7.678000000000001" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<expression label="B" exp="(-11.036, -7.678)" type="point"/>
+<element type="point" label="B">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-11.036" y="-7.678" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="C">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.156735332845663" y="0.1011255791270624" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="D">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-17.23778430975861" y="-1.8328835152754457" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="C" a1="D"/>
+	<output a0="f"/>
+</command>
+<element type="segment" label="f">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.9340090944025081" y="-1.081048976912946" z="31.35659477343289"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="E">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.208977821178522" y="0.13942772092495304" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="E" a1="C"/>
+	<output a0="g"/>
+</command>
+<element type="segment" label="g">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.03830214179789064" y="-2.9477575116671417" z="0.9169312532031326"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="F">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-12.198769627027096" y="-1.8449098033010578" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="E" a1="F"/>
+	<output a0="h"/>
+</command>
+<element type="segment" label="h">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.9843375242260108" y="1.010208194151426" z="26.07021932106343"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="G">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-12.210795915052708" y="-3.8172210395014567" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="F" a1="G"/>
+	<output a0="i"/>
+</command>
+<element type="segment" label="i">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.972311236200399" y="-0.012026288025612786" z="24.037582986529912"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="H">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.475359712523376" y="-5.169439535732693" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="G" a1="H"/>
+	<output a0="j"/>
+</command>
+<element type="segment" label="j">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.3522184962312367" y="-1.264563797470668" z="11.684544556542207"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="I">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.962997779043716" y="-5.140112722318797" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="H" a1="I"/>
+	<output a0="k"/>
+</command>
+<element type="segment" label="k">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.029326813413896424" y="-2.48763806652034" z="-13.25488393163819"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="J">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-17.213731733707384" y="-3.8172210395014567" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="I" a1="J"/>
+	<output a0="l"/>
+</command>
+<element type="segment" label="l">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-1.3228916828173403" y="-1.2507339546636675" z="-27.546230507331423"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="J" a1="D"/>
+	<output a0="m"/>
+</command>
+<element type="segment" label="m">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-1.984337524226011" y="-0.02405257605122557" z="-34.24966781051258"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="K">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.914892626941267" y="-0.4378341043044319" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="D" a1="K"/>
+	<output a0="n"/>
+</command>
+<element type="segment" label="n">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-1.3950494109710139" y="1.3228916828173425" z="-21.622854489843228"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="K" a1="C"/>
+	<output a0="p"/>
+</command>
+<element type="segment" label="p">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.5389596834314944" y="-0.24184270590439638" z="-8.6833724765847"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="L">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.461529869716378" y="-0.46188668035565633" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="K" a1="L"/>
+	<output a0="q"/>
+</command>
+<element type="segment" label="q">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.024052576051224406" y="2.4533627572248893" z="1.456960050599986"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="L" a1="E"/>
+	<output a0="r"/>
+</command>
+<element type="segment" label="r">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.6013144012806093" y="0.25255204853785607" z="-7.977961346613372"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="L" a1="F"/>
+	<output a0="s"/>
+</command>
+<element type="segment" label="s">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.3830231229454015" y="1.262760242689282" z="19.200859216618806"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="M">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-11.94621757848924" y="-2.62661852496585" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Point">
+	<input a0="i"/>
+	<output a0="N"/>
+</command>
+<element type="point" label="N">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-12.20338930981256" y="-2.6025377801171534" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="M" a1="N"/>
+	<output a0="t"/>
+</command>
+<element type="segment" label="t">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.0240807448486966" y="-0.2571717313233197" z="-0.9631658510059857"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="O">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-11.982296442566076" y="-3.095643757964725" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Point">
+	<input a0="i"/>
+	<output a0="P"/>
+</command>
+<element type="point" label="P">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-12.20639666428556" y="-3.095743913689071" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="O" a1="P"/>
+	<output a0="a"/>
+</command>
+<element type="segment" label="a">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.00010015572434607378" y="-0.22410022171948363" z="-0.692534356944897"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="O" a1="M"/>
+	<output a0="b"/>
+</command>
+<element type="segment" label="b">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.4690252329988751" y="0.03607886407683658" z="-5.508312070462228"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="Q">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-12.595637131872298" y="-1.8930149554035065" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="R">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-12.619689707923524" y="-3.8292473275270686" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="Q" a1="R"/>
+	<output a0="c"/>
+</command>
+<element type="segment" label="c">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.9362323721235621" y="-0.02405257605122557" z="24.342548476071766"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="S">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.485627744152142" y="-4.804924412911523" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="S" a1="R"/>
+	<output a0="d"/>
+</command>
+<element type="segment" label="d">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.9756770853844547" y="0.8659380362286182" z="-8.996851161650547"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="T">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.93894520299249" y="-4.791350369576044" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="S" a1="T"/>
+	<output a0="e"/>
+</command>
+<element type="segment" label="e">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.013574043335479402" y="-2.453317458840349" z="-11.97105944600932"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="U">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.828890516887796" y="-3.841273615552681" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="T" a1="U"/>
+	<output a0="f_1"/>
+</command>
+<element type="segment" label="f_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.950076754023363" y="-0.8899453138953053" z="-19.407261129650088"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="V">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.840916804913405" y="-1.8569360913266701" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="U" a1="V"/>
+	<output a0="g_1"/>
+</command>
+<element type="segment" label="g_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-1.9843375242260108" y="-0.012026288025609233" z="-33.44039520663753"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="W">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.92691891496688" y="-0.8467278971752463" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="V" a1="W"/>
+	<output a0="h_1"/>
+</command>
+<element type="segment" label="h_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-1.0102081941514238" y="0.9139978899465255" z="-15.315596484107814"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="Z">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.461529869716378" y="-0.8467278971752463" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="W" a1="Z"/>
+	<output a0="i_1"/>
+</command>
+<element type="segment" label="i_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0" y="2.465389045250502" z="2.0875136820038467"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="Z" a1="Q"/>
+	<output a0="j_1"/>
+</command>
+<element type="segment" label="j_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.0462870582282602" y="0.8658927378440797" z="14.817800023731438"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="A_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-14.688211248328821" y="-0.9429382013801438" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="B_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-14.964815872917903" y="-2.8671442854780937" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="A_1" a1="B_1"/>
+	<output a0="k_1"/>
+</command>
+<element type="segment" label="k_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.9242060840979498" y="-0.27660462458908164" z="28.002324381346806"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="C_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.245056685255358" y="-2.891196861529318" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="D_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-14.67618496030321" y="-3.071591181913501" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="C_1" a1="D_1"/>
+	<output a0="l_1"/>
+</command>
+<element type="segment" label="l_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.1803943203841829" y="-1.4311282750478522" z="-1.7483405780775954"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="D_1" a1="B_1"/>
+	<output a0="m_1"/>
+</command>
+<element type="segment" label="m_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.20444689643540714" y="-0.28863091261469265" z="-3.887056632660922"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="E_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-14.495790639919027" y="-2.6506711010170743" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="A_1" a1="E_1"/>
+	<output a0="n_1"/>
+</command>
+<element type="segment" label="n_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.7077328996369303" y="0.19242060840979391" z="25.264982327990758"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="E_1" a1="C_1"/>
+	<output a0="p_1"/>
+</command>
+<element type="segment" label="p_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.24052576051224372" y="1.2507339546636693" z="6.801895416580578"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="E_1" a1="D_1"/>
+	<output a0="q_1"/>
+</command>
+<element type="segment" label="q_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.42092008089642663" y="-0.1803943203841829" z="5.623403356982408"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="B_1" a1="E_1"/>
+	<output a0="r_1"/>
+</command>
+<element type="segment" label="r_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.21647318446101949" y="0.46902523299887555" z="-1.8947183303455901"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="F_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.1433920994279" y="0.4761637856420943" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="F_1" a1="C"/>
+	<output a0="s_1"/>
+</command>
+<element type="segment" label="s_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.3750382065150319" y="-0.013343233417764111" z="6.060742384575283"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="G_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.245056685255358" y="0.48819007366770645" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="G_1" a1="E"/>
+	<output a0="t_1"/>
+</command>
+<element type="segment" label="t_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.3487623527427534" y="0.03607886407683658" z="4.601763788449276"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="F_1" a1="G_1"/>
+	<output a0="a_1"/>
+</command>
+<element type="segment" label="a_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.012026288025612175" y="2.898335414172541" z="-1.574227445971057"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="H_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.305188125383419" y="0.8008735623336234" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="H_1" a1="G_1"/>
+	<output a0="b_1"/>
+</command>
+<element type="segment" label="b_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.31268348866591694" y="0.060131440128060376" z="4.112154959737609"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="I_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.119339523376674" y="0.8128998503592355" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="H_1" a1="I_1"/>
+	<output a0="c_1"/>
+</command>
+<element type="segment" label="c_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.01202628802561212" y="-2.814151397993255" z="2.0937674304261886"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="F_1" a1="I_1"/>
+	<output a0="d_1"/>
+</command>
+<element type="segment" label="d_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.33673606471714124" y="0.02405257605122557" z="-5.447515292414137"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="J_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.365319565511479" y="1.0534256108714792" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="J_1" a1="H_1"/>
+	<output a0="e_1"/>
+</command>
+<element type="segment" label="e_1">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.25255204853785584" y="0.060131440128060376" z="3.312094836583526"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="K_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.425451005639541" y="1.293951371383723" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="J_1" a1="K_1"/>
+	<output a0="f_2"/>
+</command>
+<element type="segment" label="f_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.24052576051224372" y="-0.06013144012806215" z="-3.1513596539343336"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="L_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.03313589042025" y="1.0792084887831315" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="L_1" a1="I_1"/>
+	<output a0="g_2"/>
+</command>
+<element type="segment" label="g_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.26630863842389596" y="-0.08620363295642264" z="4.362794281093633"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="L_1" a1="J_1"/>
+	<output a0="h_2"/>
+</command>
+<element type="segment" label="h_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.025782877911652236" y="2.667816324908772" z="-2.465749639152131"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="M_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.95058778285078" y="1.306215784599177" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="K_1" a1="M_1"/>
+	<output a0="i_2"/>
+</command>
+<element type="segment" label="i_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.012264413215454129" y="-2.525136777211239" z="3.1027489170669575"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="L_1" a1="M_1"/>
+	<output a0="j_2"/>
+</command>
+<element type="segment" label="j_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.22700729581604562" y="0.08254810756947073" z="-3.7287254403574437"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="N_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.206656125774966" y="-5.754717338572318" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="N_1" a1="I"/>
+	<output a0="k_2"/>
+</command>
+<element type="segment" label="k_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.614604616253521" y="0.24365834673124986" z="-8.558500756312512"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="J" a1="N_1"/>
+	<output a0="l_2"/>
+</command>
+<element type="segment" label="l_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="1.9374962990708613" y="1.0070756079324177" z="37.19577172622505"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="O_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.254597032504922" y="-5.790655449272997" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="O_1" a1="N_1"/>
+	<output a0="m_2"/>
+</command>
+<element type="segment" label="m_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.03593811070067865" y="-2.9520590932700443" z="-17.570702250467136"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="O_1" a1="H"/>
+	<output a0="n_2"/>
+</command>
+<element type="segment" label="n_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.6212159135403033" y="-0.22076268001845456" z="-9.5123272202011"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="O_1" a1="G"/>
+	<output a0="p_2"/>
+</command>
+<element type="segment" label="p_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-1.97343440977154" y="1.0438011174522135" z="-20.11278524286905"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="P_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.518698006647687" y="-4.214512594257516" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="Q_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.647048402007254" y="-4.373667084503379" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="P_1" a1="Q_1"/>
+	<output a0="q_2"/>
+</command>
+<element type="segment" label="q_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.1591544902458626" y="-0.1283503953595666" z="1.9289361128066815"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="R_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.119377856930463" y="-3.6189667597891257" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="S_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.32987250532015" y="-3.701111012819249" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="R_1" a1="S_1"/>
+	<output a0="r_2"/>
+</command>
+<element type="segment" label="r_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.08214425303012307" y="-0.21049464838968746" z="0.5623411177320818"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="T_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.57630526441052" y="-2.7923902136735155" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="U_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.30420242624824" y="-2.78212218204475" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="T_1" a1="U_1"/>
+	<output a0="s_2"/>
+</command>
+<element type="segment" label="s_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.010268031628765328" y="0.272102838162283" z="0.5896112756541072"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="V_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.28880037880509" y="-1.8939374461565475" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="W_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.098841793672932" y="-2.001751778258584" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="V_1" a1="W_1"/>
+	<output a0="t_2"/>
+</command>
+<element type="segment" label="t_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.10781433210203639" y="0.1899585851321568" z="2.1159358111849755"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="Z_1">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.636780370378489" y="-1.2316494061011825" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="A_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.518698006647687" y="-1.4062059437901935" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="Z_1" a1="A_2"/>
+	<output a0="a_2"/>
+</command>
+<element type="segment" label="a_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.17455653768901103" y="0.11808236373080128" z="2.8749383152168235"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="B_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.803936724643869" y="-1.2419174377299478" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="C_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.916885072560287" y="-1.4062059437901935" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="B_2" a1="C_2"/>
+	<output a0="b_2"/>
+</command>
+<element type="segment" label="b_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.1642885060602457" y="-0.11294834791641861" z="2.127555619401715"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="D_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.12111262133097" y="-1.9247415410428437" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="E_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.32647325390628" y="-2.0068857940729665" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="D_2" a1="E_2"/>
+	<output a0="c_2"/>
+</command>
+<element type="segment" label="c_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.08214425303012285" y="-0.20536063257530834" z="0.6825578547908187"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="F_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.316205222277514" y="-3.6035647123459777" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="G_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.15705073203165" y="-3.7524511709630755" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="F_2" a1="G_2"/>
+	<output a0="d_2"/>
+</command>
+<element type="segment" label="d_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.1488864586170977" y="0.15915449024586437" z="2.556126142624805"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="H_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.932287120003435" y="-4.229914641700664" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="I_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.839874835344547" y="-4.373667084503379" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="H_2" a1="I_2"/>
+	<output a0="e_2"/>
+</command>
+<element type="segment" label="e_2">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.1437524428027146" y="0.09241228465888796" z="2.3936963832809326"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="J_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-14.763997681933432" y="-4.41473921101844" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<element type="point" label="K_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-14.753729650304667" y="-4.6355018910368955" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="J_2" a1="K_2"/>
+	<output a0="f_3"/>
+</command>
+<element type="segment" label="f_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.22076268001845545" y="0.010268031628765328" z="3.304670377901388"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="L_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.201522109960585" y="-6.108964429764723" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="N_1" a1="L_2"/>
+	<output a0="g_3"/>
+</command>
+<element type="segment" label="g_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.3542470911924047" y="0.005134015814380888" z="5.770705600334864"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="M_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.300803174834366" y="-6.165438603722932" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="M_2" a1="L_2"/>
+	<output a0="h_3"/>
+</command>
+<element type="segment" label="h_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.056474173958209306" y="-2.9007189351262195" z="-18.635356373456773"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="O_1" a1="M_2"/>
+	<output a0="i_3"/>
+</command>
+<element type="segment" label="i_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.3747831544499354" y="-0.04620614232944398" z="4.700035836935072"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="N_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.352143332978192" y="-6.406737346998918" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="N_2" a1="M_2"/>
+	<output a0="j_3"/>
+</command>
+<element type="segment" label="j_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.2412987432759861" y="0.05134015814382664" z="-2.8929324977075908"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="O_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.15531596763114" y="-6.411871362813301" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="N_2" a1="O_2"/>
+	<output a0="k_3"/>
+</command>
+<element type="segment" label="k_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.005134015814382664" y="-2.803172634652947" z="-17.890640693488976"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="L_2" a1="O_2"/>
+	<output a0="l_3"/>
+</command>
+<element type="segment" label="l_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.3029069330485781" y="0.046206142329445754" z="5.189825052974129"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="P_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-16.083439746229782" y="-6.678840185161199" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="P_2" a1="O_2"/>
+	<output a0="m_3"/>
+</command>
+<element type="segment" label="m_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.26696882234789854" y="-0.0718762214013573" z="-4.773826764207286"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="Q_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.434287586008315" y="-6.714778295861878" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="P_2" a1="Q_2"/>
+	<output a0="n_3"/>
+</command>
+<element type="segment" label="n_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.03593811070067865" y="2.649152160221467" z="18.271272342341433"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="N_2" a1="Q_2"/>
+	<output a0="p_3"/>
+</command>
+<element type="segment" label="p_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.30804094886295985" y="-0.08214425303012263" z="3.586730247915426"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="R_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-13.490761759966524" y="-6.9355409758803335" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="R_2" a1="Q_2"/>
+	<output a0="q_3"/>
+</command>
+<element type="segment" label="q_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.22076268001845545" y="0.056474173958209306" z="-2.586577774054547"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<element type="point" label="S_2">
+	<show object="false" label="true"/>
+	<objColor r="21" g="101" b="192" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<animation step="0.1" speed="1" type="1" playing="false"/>
+	<coords x="-15.980759429942129" y="-6.915004912622803" z="1"/>
+	<pointSize val="5"/>
+	<pointStyle val="0"/>
+</element>
+<command name="Segment">
+	<input a0="R_2" a1="S_2"/>
+	<output a0="r_3"/>
+</command>
+<element type="segment" label="r_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="-0.020536063257530657" y="-2.4899976699756046" z="-17.546528006857315"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+<command name="Segment">
+	<input a0="P_2" a1="S_2"/>
+	<output a0="s_3"/>
+</command>
+<element type="segment" label="s_3">
+	<show object="true" label="false"/>
+	<objColor r="97" g="97" b="97" alpha="0"/>
+	<layer val="0"/>
+	<labelMode val="0"/>
+	<coords x="0.23616472746160344" y="0.10268031628765328" z="4.484126586960528"/>
+	<lineStyle thickness="5" type="0" typeHidden="1" opacity="204"/>
+	<eqnStyle style="explicit"/>
+	<outlyingIntersections val="false"/>
+	<keepTypeOnTransform val="true"/>
+</element>
+</construction>
+</geogebra>

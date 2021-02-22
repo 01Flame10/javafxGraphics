@@ -23,10 +23,8 @@ public class Parser {
 
     public GraphicalPicture parse() {
         try {
-            // Создается построитель документа
             DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            // Создается дерево DOM документа из файла
-            Document document = documentBuilder.parse("/home/flame/Downloads/geogebra.xml");
+            Document document = documentBuilder.parse("src/resources/geogebra.xml");
 
             Node root = document.getDocumentElement();
 
