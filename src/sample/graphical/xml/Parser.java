@@ -21,7 +21,7 @@ import java.util.Map;
 public class Parser {
     private final int MULT_PARAM = 100;
 
-    public GraphicalPicture parse() {
+    public void parse(GraphicalPicture picture) {
         try {
             DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = documentBuilder.parse("src/resources/geogebra.xml");
@@ -75,18 +75,16 @@ public class Parser {
             .endY(points.get(connection.getValue()).getY())
             .build()));
 
-            GraphicalPicture picture = GraphicalPicture.builder()
-//                    .centerX((int) points.values().stream().mapToInt(GraphicalPoint::getX).average().orElse(0))
-//                    .centerY((int) points.values().stream().mapToInt(GraphicalPoint::getY).average().orElse(0))
-                    .centerX(GraphicalPicture.canonicalCenterX)
-                    .centerY(GraphicalPicture.canonicalCenterY)
-                    .build();
+//            picture = GraphicalPicture.builder()
+////                    .centerX((int) points.values().stream().mapToInt(GraphicalPoint::getX).average().orElse(0))
+////                    .centerY((int) points.values().stream().mapToInt(GraphicalPoint::getY).average().orElse(0))
+//                    .centerX(GraphicalPicture.canonicalCenterX)
+//                    .centerY(GraphicalPicture.canonicalCenterY)
+//                    .build();
             picture.addPointsToList(sections);
-            return picture;
 
         } catch (ParserConfigurationException | IOException | SAXException ex) {
             ex.printStackTrace(System.out);
         }
-        return null;
     }
 }

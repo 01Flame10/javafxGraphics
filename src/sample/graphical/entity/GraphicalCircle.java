@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
 import lombok.Builder;
+import sample.configuration.CanvasParametersWrapper;
 import sample.graphical.GraphicalObject;
 
 import java.util.Arrays;
@@ -24,9 +25,18 @@ public class GraphicalCircle extends GraphicalObject {
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        canvas.getGraphicsContext2D().fillOval(centerX * canvas.getScaleZ() - radius * canvas.getScaleZ() / 2, canvas.getHeight() - centerY * canvas.getScaleZ() - radius * canvas.getScaleZ() / 2,
-                radius * canvas.getScaleZ(), radius * canvas.getScaleZ());
+    public void draw(Canvas canvas, CanvasParametersWrapper parameters) {
+        canvas.getGraphicsContext2D().fillOval(centerX * parameters.getScaleParameters().getScale() - radius * parameters.getScaleParameters().getScale() / 2, canvas.getHeight() - centerY * parameters.getScaleParameters().getScale() - radius * parameters.getScaleParameters().getScale() / 2,
+                radius * parameters.getScaleParameters().getScale(), radius * parameters.getScaleParameters().getScale());
+    }
+
+
+    @Override
+    public GraphicalPoint getRotationPoint() {
+        return GraphicalPoint.builder()
+                .x(centerX)
+                .y(centerY)
+                .build();
     }
 
     @Override

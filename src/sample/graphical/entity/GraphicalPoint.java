@@ -3,11 +3,12 @@ package sample.graphical.entity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.paint.Color;
 import lombok.Builder;
 import lombok.Data;
+import sample.configuration.CanvasParametersWrapper;
 import sample.graphical.GraphicalObject;
 
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,21 +22,37 @@ public class GraphicalPoint extends GraphicalObject {
     private int y;
 
     @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-//        System.out.println("x " + (x < canvas.getWidth() / 2 ? -1 : 1));
-//        System.out.println("y " + (y < canvas.getHeight() / 2 ? -1 : 1));
-        canvas.getGraphicsContext2D().fillOval((x * (canvas.getScaleZ())/* * (x < canvas.getWidth() / 2 ? -1 : 1))*/ - DRAW_RADIUS / 2),
-                (canvas.getHeight() - y * (canvas.getScaleZ())/* * (y < canvas.getHeight() / 2 ? -1 : 1))*/ - DRAW_RADIUS / 2),
+    public void draw(Canvas canvas, CanvasParametersWrapper parameters) {
+       GraphicalPoint preparedPoint = prepare(parameters);
+        canvas.getGraphicsContext2D().fillOval(preparedPoint.getX(),
+                canvas.getHeight() - preparedPoint.getY(),
                 DRAW_RADIUS, DRAW_RADIUS);
     }
 
     public static ObservableList<String> parametersToObservableList() {
         return FXCollections.observableArrayList(
                 Arrays.stream(GraphicalPoint.class.getDeclaredFields())
-                        .filter(field -> !field.getName().equals("DRAW_RADIUS"))
+                        .filter(field -> !Modifier.isFinal(field.getModifiers()))
                         .map(field -> field.getName() + " =")
                         .collect(Collectors.toList()));
+    }
+
+    public GraphicalPoint prepare(CanvasParametersWrapper parameters) {
+        double coordX = coordinateToDrawable(x, parameters);
+        double coordY = coordinateToDrawable(y, parameters);
+        double pointX = coordinateToDrawable(parameters.getRotationParameters().getRotationCenter().getX(), parameters);
+        double pointY = coordinateToDrawable(parameters.getRotationParameters().getRotationCenter().getY(), parameters);
+        double radians = (Math.PI / 180) * parameters.getRotationParameters().getRotationDegrees();
+
+        return GraphicalPoint.builder()
+                .x((int) (pointX + (coordX - pointX) * Math.cos(radians) - (coordY - pointY) * Math.sin(radians)))
+                .y((int) (pointY + (coordX - pointX) * Math.sin(radians) + (coordY - pointY) * Math.cos(radians)))
+                .build();
+    }
+
+    @Override
+    public GraphicalPoint getRotationPoint() {
+        return this;
     }
 
     @Override
@@ -82,4 +99,9 @@ public class GraphicalPoint extends GraphicalObject {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    private double coordinateToDrawable(int value, CanvasParametersWrapper parameters) {
+        return value * (parameters.getScaleParameters().getScale()) - DRAW_RADIUS / 2;
+    }
+
 }

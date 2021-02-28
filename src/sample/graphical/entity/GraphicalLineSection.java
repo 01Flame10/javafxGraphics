@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
 import lombok.Builder;
 import lombok.Data;
+import sample.configuration.CanvasParametersWrapper;
 import sample.graphical.GraphicalObject;
 
 import java.util.Arrays;
@@ -27,11 +28,41 @@ public class GraphicalLineSection extends GraphicalObject {
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        canvas.getGraphicsContext2D().strokeLine(startX * canvas.getScaleZ(),
-                canvas.getHeight() - startY * canvas.getScaleZ(),
-                endX * canvas.getScaleZ(),
-                canvas.getHeight() - endY * canvas.getScaleZ());
+    public void draw(Canvas canvas, CanvasParametersWrapper parameters) {
+        GraphicalLineSection section = this.prepare(parameters);
+        canvas.getGraphicsContext2D().strokeLine(section.getStartX() * parameters.getScaleParameters().getScale(),
+                canvas.getHeight() - section.getStartY() * parameters.getScaleParameters().getScale(),
+                section.getEndX() * parameters.getScaleParameters().getScale(),
+                canvas.getHeight() - section.getEndY() * parameters.getScaleParameters().getScale());
+    }
+
+
+    @Override
+    public GraphicalPoint getRotationPoint() {
+        return GraphicalPoint.builder()
+                .x(Math.abs(startX - endX))
+                .y(Math.abs(startY - endY))
+                .build();
+    }
+
+    @Override
+    public GraphicalLineSection prepare(CanvasParametersWrapper parameters) {
+        GraphicalLineSection section = GraphicalLineSection.builder().build();
+        GraphicalPoint startPoint = GraphicalPoint.builder()
+                .x(this.getStartX())
+                .y(this.getStartY())
+                .build().prepare(parameters);
+
+        GraphicalPoint endPoint = GraphicalPoint.builder()
+                .x(this.getEndX())
+                .y(this.getEndY())
+                .build().prepare(parameters);
+
+        section.setStartX(startPoint.getX());
+        section.setStartY(startPoint.getY());
+        section.setEndX(endPoint.getX());
+        section.setEndY(endPoint.getY());
+        return section;
     }
 
     @Override
@@ -62,7 +93,7 @@ public class GraphicalLineSection extends GraphicalObject {
     }
 
     @Override
-    public GraphicalObject clone() {
+    public GraphicalLineSection clone() {
         return GraphicalLineSection.builder()
                 .startX(this.startX)
                 .startY(this.startY)

@@ -5,8 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
 import lombok.Builder;
 import lombok.Data;
+import sample.configuration.CanvasParametersWrapper;
 import sample.graphical.GraphicalObject;
+import sample.graphical.xml.Parser;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,28 +30,57 @@ public class GraphicalPicture extends GraphicalObject {
         graphicalLineSections.addAll(points);
     }
 
+    public GraphicalPicture(int centerX, int centerY) {
+        this.centerX = centerX;
+        this.centerY = centerY;
+        System.out.println("Parse");
+        Parser parser = new Parser();
+        parser.parse(this);
+    }
+
     @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
+    public void draw(Canvas canvas, CanvasParametersWrapper parameters) {
         double lineWidth = canvas.getGraphicsContext2D().getLineWidth();
         canvas.getGraphicsContext2D().setLineWidth(5);
+
+        int deltaX = centerX - canonicalCenterX;
+        int deltaY = centerY - canonicalCenterY;
         graphicalLineSections.forEach(o -> {
-            // TODO improve
-            o.setStartX(o.getStartX() - centerX + canonicalCenterX);
-            o.setStartY(o.getStartY() - centerY + canonicalCenterY);
-            o.setEndX(o.getEndX() - centerX + canonicalCenterX);
-            o.setEndY(o.getEndY() - centerY + canonicalCenterY);
-            o.draw(canvas);
+            GraphicalLineSection section = o.clone();
+            section.setStartX(section.getStartX() + deltaX);
+            section.setStartY(section.getStartY() + deltaY);
+            section.setEndX(section.getEndX() + deltaX);
+            section.setEndY(section.getEndY() + deltaY);
+            section.draw(canvas, parameters);
         });
         canvas.getGraphicsContext2D().setLineWidth(lineWidth);
     }
 
     public static ObservableList<String> parametersToObservableList() {
         return FXCollections.observableArrayList(
-                Arrays.stream(GraphicalPoint.class.getDeclaredFields())
-                        .filter(field -> !field.getName().equals("DRAW_RADIUS"))
+                Arrays.stream(GraphicalPicture.class.getDeclaredFields())
+                        .filter(field -> !Modifier.isFinal(field.getModifiers()))
                         .map(field -> field.getName() + " =")
                         .collect(Collectors.toList()));
+    }
+
+    @Override
+    public GraphicalPoint getRotationPoint() {
+        return GraphicalPoint.builder()
+                .x(centerX)
+                .y(centerY)
+                .build();
+    }
+
+    @Override
+    public GraphicalObject clone() {
+        GraphicalPicture picture = GraphicalPicture.builder()
+                .centerY(getCenterY())
+                .centerX(getCenterX())
+                .build();
+
+        picture.addPointsToList(getGraphicalLineSections());
+        return picture;
     }
 
     @Override

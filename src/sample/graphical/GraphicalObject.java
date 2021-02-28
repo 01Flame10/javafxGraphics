@@ -4,11 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
 import lombok.NoArgsConstructor;
+import sample.configuration.CanvasParametersWrapper;
+import sample.graphical.entity.GraphicalPoint;
 
 
 @NoArgsConstructor
 public abstract class GraphicalObject implements Cloneable {
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas, CanvasParametersWrapper parameters) {
 //        throw new ExecutionControl.NotImplementedException("Not implemented");
     }
 
@@ -18,6 +20,20 @@ public abstract class GraphicalObject implements Cloneable {
 
     public static ObservableList<String> parametersToObservableList() {
         return FXCollections.observableArrayList("No params");
+    }
+
+    public GraphicalPoint getRotationPoint() {
+        return GraphicalPoint.builder()
+                .x(0)
+                .y(0)
+                .build();
+    }
+
+    public GraphicalObject prepare(CanvasParametersWrapper parameters) {
+        return GraphicalPoint.builder()
+                .x(0)
+                .y(0)
+                .build();
     }
 
     public int getMaxXCoordinate() {
