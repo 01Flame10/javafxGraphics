@@ -86,8 +86,8 @@ public class Controller implements Initializable {
         graphTable.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) {
                 GraphicalObject object = GraphicalPoint.builder()
-                        .x((int) (parameters.getPositionParameters().getOffset().getX() + event.getX() / (parameters.getScaleParameters().getScale())))
-                        .y((int) (parameters.getPositionParameters().getOffset().getY() + (graphTable.getHeight() - event.getY()) / (parameters.getScaleParameters().getScale())))
+                        .x((int) ((parameters.getPositionParameters().getOffset().getX() + event.getX()) / (parameters.getScaleParameters().getScale())))
+                        .y((int) ((parameters.getPositionParameters().getOffset().getY() + graphTable.getHeight() - event.getY()) / (parameters.getScaleParameters().getScale())))
                         .build();
 
                 if (objectList.stream().anyMatch(o -> o.equals(object))) {
