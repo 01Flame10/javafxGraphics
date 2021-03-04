@@ -9,5 +9,6 @@ public class CanvasParametersWrapper {
 
     private CanvasScaleParameters scaleParameters;
     private CanvasRotationParameters rotationParameters;
+    private CanvasPositionParameters positionParameters;
 
 }

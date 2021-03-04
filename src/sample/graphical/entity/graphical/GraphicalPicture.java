@@ -1,4 +1,4 @@
-package sample.graphical.entity;
+package sample.graphical.entity.graphical;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,7 +6,7 @@ import javafx.scene.canvas.Canvas;
 import lombok.Builder;
 import lombok.Data;
 import sample.configuration.CanvasParametersWrapper;
-import sample.graphical.GraphicalObject;
+import sample.graphical.entity.PointHolder;
 import sample.graphical.xml.Parser;
 
 import java.lang.reflect.Modifier;
@@ -65,8 +65,8 @@ public class GraphicalPicture extends GraphicalObject {
     }
 
     @Override
-    public GraphicalPoint getRotationPoint() {
-        return GraphicalPoint.builder()
+    public PointHolder getRotationPoint() {
+        return PointHolder.builder()
                 .x(centerX)
                 .y(centerY)
                 .build();
@@ -96,6 +96,16 @@ public class GraphicalPicture extends GraphicalObject {
     @Override
     public int getMaxYCoordinate() {
         return graphicalLineSections.stream().mapToInt(GraphicalLineSection::getMaxYCoordinate).max().orElse(0);
+    }
+
+    @Override
+    public int getMinXCoordinate() {
+        return graphicalLineSections.stream().mapToInt(GraphicalLineSection::getMaxXCoordinate).min().orElse(0);
+    }
+
+    @Override
+    public int getMinYCoordinate() {
+        return graphicalLineSections.stream().mapToInt(GraphicalLineSection::getMaxYCoordinate).min().orElse(0);
     }
 
     @Override

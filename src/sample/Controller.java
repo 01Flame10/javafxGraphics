@@ -8,16 +8,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Pair;
 import lombok.SneakyThrows;
 import sample.configuration.CanvasParametersWrapper;
+import sample.configuration.CanvasPositionParameters;
 import sample.configuration.CanvasRotationParameters;
 import sample.configuration.CanvasScaleParameters;
-import sample.graphical.GraphicalObject;
 import sample.graphical.algorithm.QuickHull;
-import sample.graphical.entity.*;
+import sample.graphical.entity.PointHolder;
+import sample.graphical.entity.graphical.*;
 
 import java.lang.reflect.Modifier;
 import java.net.URL;
@@ -36,12 +38,20 @@ public class Controller implements Initializable {
     private ParameterEditAction parameterEditAction = new ParameterEditAction();
     private CanvasParametersWrapper parameters = CanvasParametersWrapper.builder()
             .scaleParameters(CanvasScaleParameters.builder().scale(1.0).build())
+            .positionParameters(CanvasPositionParameters.builder()
+                    .offset(PointHolder.builder().x(0).y(0).build())
+                    .start(PointHolder.builder().x(0).y(0).build())
+                    .build())
             .rotationParameters(CanvasRotationParameters.builder()
-                    .rotationCenter(GraphicalPoint.builder().x(0).y(0).build())
-                    .rotationDegrees(0.0).build()).build();
+                    .rotationCenter(PointHolder.builder().x(0).y(0).build())
+                    .rotationDegrees(0.0).build())
+            .build();
+
+    private DecimalFormat doubleFormatter = new DecimalFormat("#.#");
 
 
     private static final int GRID_INTERVALS = 10;
+    private static final double SCROLL_SENSITIVE_MULTIPLICATION = 0.0025;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,21 +82,22 @@ public class Controller implements Initializable {
             redrawElements(objectList);
         });
 
-
         redrawElements(objectList);
         graphTable.setOnMouseClicked(event -> {
-            GraphicalObject object = GraphicalPoint.builder()
-                    .x((int) (event.getX() / (parameters.getScaleParameters().getScale())))
-                    .y((int) ((graphTable.getHeight() - event.getY()) / (parameters.getScaleParameters().getScale())))
-                    .build();
+            if (event.getButton() == MouseButton.SECONDARY) {
+                GraphicalObject object = GraphicalPoint.builder()
+                        .x((int) (parameters.getPositionParameters().getOffset().getX() + event.getX() / (parameters.getScaleParameters().getScale())))
+                        .y((int) (parameters.getPositionParameters().getOffset().getY() + (graphTable.getHeight() - event.getY()) / (parameters.getScaleParameters().getScale())))
+                        .build();
 
-            if (objectList.stream().anyMatch(o -> o.equals(object))) {
-                executionErrorsLabel.setText("Object with these params already exists");
-            } else {
-                objectList.add(object);
-                objectsPlacedList.getItems().add(object.toString());
+                if (objectList.stream().anyMatch(o -> o.equals(object))) {
+                    executionErrorsLabel.setText("Object with these params already exists");
+                } else {
+                    objectList.add(object);
+                    objectsPlacedList.getItems().add(object.toString());
 
-                object.draw(graphTable, parameters);
+                    object.draw(graphTable, parameters);
+                }
             }
         });
 
@@ -97,13 +108,43 @@ public class Controller implements Initializable {
                 });
 
         rotationSlider.valueProperty().addListener((changed, oldValue, newValue) -> {
-            System.out.println("rotating of " + objectsPlacedList.getSelectionModel().getSelectedIndex() + " to " + newValue.doubleValue());
-            executeGoalButton.setText("Rotate (" + new DecimalFormat("#.##").format(newValue) + "°)");
+//            executeGoalButton.setText("Rotate (" + new DecimalFormat("#.##").format(newValue) + "°)");
             parameters.getRotationParameters().setRotationDegrees(newValue.doubleValue());
             int index = objectsPlacedList.getSelectionModel().getSelectedIndex();
-            parameters.getRotationParameters().setRotationCenter(index == -1 ? GraphicalPoint.builder().x(0).y(0).build() : objectList.get(index).getRotationPoint());
-            System.out.println("-- " + parameters.getRotationParameters().getRotationCenter());
-            redrawElements(objectList);
+            if (index == -1) {
+                executionErrorsLabel.setText("No targets selected for rotation");
+            } else {
+                executionErrorsLabel.setText("");
+                parameters.getRotationParameters().setRotationCenter(objectList.get(index).getRotationPoint());
+                redrawElements(rotationModeCheckbox.isSelected() ? objectList : Collections.singletonList(objectList.get(index)));
+            }
+        });
+
+        graphTable.setOnScroll(event -> {
+                    if (event.getDeltaY() != 0) {
+                        if (parameters.getScaleParameters().getScale() < 0.01 && event.getDeltaY() < 0) {
+                            executionErrorsLabel.setText("Stop scaling. Its stupid.");
+                        } else {
+                            executionErrorsLabel.setText("");
+                            parameters.getScaleParameters().setScale((parameters.getScaleParameters().getScale() + event.getDeltaY() * SCROLL_SENSITIVE_MULTIPLICATION)); // parameters.getScaleParameters().getScale());
+                            redrawElements(objectList);
+                        }
+                    }
+                }
+        );
+
+        graphTable.setOnMousePressed(event -> {
+            parameters.getPositionParameters().getStart().setX(event.getX() - parameters.getPositionParameters().getOffset().getX());
+            parameters.getPositionParameters().getStart().setY(event.getY() - parameters.getPositionParameters().getOffset().getY());
+        });
+
+        graphTable.setOnMouseDragged(event -> {
+            if (parameters.getPositionParameters().getStart().getX() != event.getX()
+                    || parameters.getPositionParameters().getStart().getY() != event.getY()) {
+                parameters.getPositionParameters().getOffset().setX(event.getX() - parameters.getPositionParameters().getStart().getX());
+                parameters.getPositionParameters().getOffset().setY(event.getY() - parameters.getPositionParameters().getStart().getY());
+                redrawElements(objectList);
+            }
         });
 
         executeGoalButton.setVisible(false);
@@ -167,6 +208,9 @@ public class Controller implements Initializable {
     private Slider rotationSlider;
 
     @FXML
+    private CheckBox rotationModeCheckbox;
+
+    @FXML
     public void onCreateCanvas() {
 
     }
@@ -207,7 +251,7 @@ public class Controller implements Initializable {
     public void onExecuteGoal() {
         parameters.getRotationParameters().setRotationCenter(
                 objectsPlacedList.getSelectionModel().getSelectedIndex() == -1 ?
-                        GraphicalPoint.builder().x(0).y(0).build() :
+                        PointHolder.builder().x(0).y(0).build() :
                         objectList.get(objectsPlacedList.getSelectionModel().getSelectedIndex()).getRotationPoint());
 
         redrawElements(objectList);
@@ -289,6 +333,8 @@ public class Controller implements Initializable {
         } else {
             double newScale = Math.min(graphTable.getHeight(), graphTable.getWidth()) / Math.max(resizeScaleX, resizeScaleY);
             fixInErrorTextHolder.setText("Fitted in [~" + new DecimalFormat("#.##").format(newScale) + "]");
+//            parameters.getPositionParameters().getOffset().setX(objectList.stream().mapToDouble(GraphicalObject::getMinXCoordinate).min().orElse(0));
+//            parameters.getPositionParameters().getOffset().setY(objectList.stream().mapToDouble(GraphicalObject::getMinYCoordinate).min().orElse(0));
             rescale(newScale);
         }
     }
@@ -308,8 +354,9 @@ public class Controller implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About");
         alert.setHeaderText("Piece of software");
-        alert.setContentText("Simple program to create two hulls\nthat do not intersect. " +
-                "\nPoints can be placed with Create-Edit\nmenu and mouse left-click.");
+        alert.setContentText("Program that can draw\nwatches with lines. " +
+                "\nSlider can pe used to rotate\nsystem or the selected element" +
+                "\nPoints can be placed with Create-Edit\nmenu and mouse right-click.");
 
         alert.showAndWait();
     }
@@ -341,11 +388,21 @@ public class Controller implements Initializable {
     }
 
     private void redrawElements(List<GraphicalObject> list) {
+        if (parameters.getScaleParameters().getScale() < 0.01) {
+            executionErrorsLabel.setText("Stop scaling. Its stupid.");
+            return;
+        }
         graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
-
+        System.out.println("scale " + parameters.getScaleParameters().getScale());
         double lineParameter = GRID_INTERVALS * parameters.getScaleParameters().getScale();
+        double counter = parameters.getPositionParameters().getOffset().getY();
+        double counterIncrement = 10;
 
-        int counter = 0;
+        if (lineParameter < 5) {
+            lineParameter /= parameters.getScaleParameters().getScale();
+            counterIncrement /= parameters.getScaleParameters().getScale();
+        }
+
 
         graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
         for (double i = 0; i < graphTable.getWidth(); i += lineParameter) {
@@ -354,13 +411,18 @@ public class Controller implements Initializable {
 
         graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
         for (double i = graphTable.getHeight(); i > 0; i -= lineParameter) {
+//            if (counter < 0 && counter + counterIncrement > 0)
+//                graphTable.getGraphicsContext2D().setStroke(Color.RED);
+//            else
+//                graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
+
             graphTable.getGraphicsContext2D().strokeLine(0, i, graphTable.getWidth(), i);
-            graphTable.getGraphicsContext2D().strokeText(String.valueOf(counter), 0, i);
-            counter += 10;
+            graphTable.getGraphicsContext2D().strokeText(doubleFormatter.format(counter), 0, i);
+
+            counter += counterIncrement;
         }
 
         list.forEach(graphicalObject -> graphicalObject.draw(graphTable, parameters));
-        list.forEach(System.out::println);
 
     }
 

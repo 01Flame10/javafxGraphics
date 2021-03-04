@@ -1,7 +1,7 @@
 package sample.graphical.algorithm;
 
 import lombok.SneakyThrows;
-import sample.graphical.entity.GraphicalPoint;
+import sample.graphical.entity.graphical.GraphicalPoint;
 
 import java.util.ArrayList;
 import java.util.Comparator;

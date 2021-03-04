@@ -1,4 +1,4 @@
-package sample.graphical.entity;
+package sample.graphical.entity.graphical;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,7 +6,7 @@ import javafx.scene.canvas.Canvas;
 import lombok.Builder;
 import lombok.Data;
 import sample.configuration.CanvasParametersWrapper;
-import sample.graphical.GraphicalObject;
+import sample.graphical.entity.PointHolder;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Data
 @Builder
-public class GraphicalLineSection extends GraphicalObject {
+public class GraphicalLine extends GraphicalObject {
     private int startX;
     private int startY;
     private int endX;
@@ -22,32 +22,31 @@ public class GraphicalLineSection extends GraphicalObject {
 
     public static ObservableList<String> parametersToObservableList() {
         return FXCollections.observableArrayList(
-                Arrays.stream(GraphicalLineSection.class.getDeclaredFields())
+                Arrays.stream(GraphicalLine.class.getDeclaredFields())
                         .map(field -> field.getName() + " =")
                         .collect(Collectors.toList()));
     }
 
     @Override
     public void draw(Canvas canvas, CanvasParametersWrapper parameters) {
-        GraphicalLineSection section = this.prepare(parameters);
+        GraphicalLine section = this.prepare(parameters);
         canvas.getGraphicsContext2D().strokeLine(section.getStartX() * parameters.getScaleParameters().getScale(),
                 canvas.getHeight() - section.getStartY() * parameters.getScaleParameters().getScale(),
                 section.getEndX() * parameters.getScaleParameters().getScale(),
                 canvas.getHeight() - section.getEndY() * parameters.getScaleParameters().getScale());
     }
 
-
     @Override
-    public GraphicalPoint getRotationPoint() {
-        return GraphicalPoint.builder()
+    public PointHolder getRotationPoint() {
+        return PointHolder.builder()
                 .x(Math.abs(startX - endX))
                 .y(Math.abs(startY - endY))
                 .build();
     }
 
     @Override
-    public GraphicalLineSection prepare(CanvasParametersWrapper parameters) {
-        GraphicalLineSection section = GraphicalLineSection.builder().build();
+    public GraphicalLine prepare(CanvasParametersWrapper parameters) {
+        GraphicalLine section = GraphicalLine.builder().build();
         GraphicalPoint startPoint = GraphicalPoint.builder()
                 .x(this.getStartX())
                 .y(this.getStartY())
@@ -83,8 +82,18 @@ public class GraphicalLineSection extends GraphicalObject {
     }
 
     @Override
+    public int getMinXCoordinate() {
+        return Math.min(startX, endX);
+    }
+
+    @Override
+    public int getMinYCoordinate() {
+        return Math.min(startY, endY);
+    }
+
+    @Override
     public String toString() {
-        return "LineSection{" +
+        return "Line{" +
                 "startX=" + startX +
                 ", startY=" + startY +
                 ", endX=" + endX +
@@ -93,8 +102,8 @@ public class GraphicalLineSection extends GraphicalObject {
     }
 
     @Override
-    public GraphicalLineSection clone() {
-        return GraphicalLineSection.builder()
+    public GraphicalObject clone() {
+        return GraphicalLine.builder()
                 .startX(this.startX)
                 .startY(this.startY)
                 .endX(this.endX)
@@ -106,7 +115,7 @@ public class GraphicalLineSection extends GraphicalObject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GraphicalLineSection that = (GraphicalLineSection) o;
+        GraphicalLine that = (GraphicalLine) o;
         return startX == that.startX &&
                 startY == that.startY &&
                 endX == that.endX &&

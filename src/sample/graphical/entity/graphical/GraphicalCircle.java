@@ -1,11 +1,11 @@
-package sample.graphical.entity;
+package sample.graphical.entity.graphical;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
 import lombok.Builder;
 import sample.configuration.CanvasParametersWrapper;
-import sample.graphical.GraphicalObject;
+import sample.graphical.entity.PointHolder;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -32,8 +32,8 @@ public class GraphicalCircle extends GraphicalObject {
 
 
     @Override
-    public GraphicalPoint getRotationPoint() {
-        return GraphicalPoint.builder()
+    public PointHolder getRotationPoint() {
+        return PointHolder.builder()
                 .x(centerX)
                 .y(centerY)
                 .build();
@@ -52,6 +52,16 @@ public class GraphicalCircle extends GraphicalObject {
     @Override
     public int getMaxYCoordinate() {
         return centerY + radius;
+    }
+
+    @Override
+    public int getMinXCoordinate() {
+        return centerX - radius;
+    }
+
+    @Override
+    public int getMinYCoordinate() {
+        return centerY - radius;
     }
 
     @Override

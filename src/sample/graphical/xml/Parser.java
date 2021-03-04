@@ -5,9 +5,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import sample.graphical.entity.GraphicalLineSection;
-import sample.graphical.entity.GraphicalPicture;
-import sample.graphical.entity.GraphicalPoint;
+import sample.graphical.entity.graphical.GraphicalLineSection;
+import sample.graphical.entity.graphical.GraphicalPicture;
+import sample.graphical.entity.graphical.GraphicalPoint;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

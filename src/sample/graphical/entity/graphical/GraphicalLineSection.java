@@ -1,4 +1,4 @@
-package sample.graphical.entity;
+package sample.graphical.entity.graphical;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,7 +6,7 @@ import javafx.scene.canvas.Canvas;
 import lombok.Builder;
 import lombok.Data;
 import sample.configuration.CanvasParametersWrapper;
-import sample.graphical.GraphicalObject;
+import sample.graphical.entity.PointHolder;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Data
 @Builder
-public class GraphicalLine extends GraphicalObject {
+public class GraphicalLineSection extends GraphicalObject {
     private int startX;
     private int startY;
     private int endX;
@@ -22,31 +22,32 @@ public class GraphicalLine extends GraphicalObject {
 
     public static ObservableList<String> parametersToObservableList() {
         return FXCollections.observableArrayList(
-                Arrays.stream(GraphicalLine.class.getDeclaredFields())
+                Arrays.stream(GraphicalLineSection.class.getDeclaredFields())
                         .map(field -> field.getName() + " =")
                         .collect(Collectors.toList()));
     }
 
     @Override
     public void draw(Canvas canvas, CanvasParametersWrapper parameters) {
-        GraphicalLine section = this.prepare(parameters);
-        canvas.getGraphicsContext2D().strokeLine(section.getStartX() * parameters.getScaleParameters().getScale(),
-                canvas.getHeight() - section.getStartY() * parameters.getScaleParameters().getScale(),
-                section.getEndX() * parameters.getScaleParameters().getScale(),
-                canvas.getHeight() - section.getEndY() * parameters.getScaleParameters().getScale());
+        GraphicalLineSection section = this.prepare(parameters);
+        canvas.getGraphicsContext2D().strokeLine(parameters.getPositionParameters().getOffset().getX() + section.getStartX() * parameters.getScaleParameters().getScale(),
+                parameters.getPositionParameters().getOffset().getY() + canvas.getHeight() - section.getStartY() * parameters.getScaleParameters().getScale(),
+                parameters.getPositionParameters().getOffset().getX() + section.getEndX() * parameters.getScaleParameters().getScale(),
+                parameters.getPositionParameters().getOffset().getY() + canvas.getHeight() - section.getEndY() * parameters.getScaleParameters().getScale());
     }
 
+
     @Override
-    public GraphicalPoint getRotationPoint() {
-        return GraphicalPoint.builder()
+    public PointHolder getRotationPoint() {
+        return PointHolder.builder()
                 .x(Math.abs(startX - endX))
                 .y(Math.abs(startY - endY))
                 .build();
     }
 
     @Override
-    public GraphicalLine prepare(CanvasParametersWrapper parameters) {
-        GraphicalLine section = GraphicalLine.builder().build();
+    public GraphicalLineSection prepare(CanvasParametersWrapper parameters) {
+        GraphicalLineSection section = GraphicalLineSection.builder().build();
         GraphicalPoint startPoint = GraphicalPoint.builder()
                 .x(this.getStartX())
                 .y(this.getStartY())
@@ -82,8 +83,18 @@ public class GraphicalLine extends GraphicalObject {
     }
 
     @Override
+    public int getMinXCoordinate() {
+        return 0;
+    }
+
+    @Override
+    public int getMinYCoordinate() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
-        return "Line{" +
+        return "LineSection{" +
                 "startX=" + startX +
                 ", startY=" + startY +
                 ", endX=" + endX +
@@ -92,8 +103,8 @@ public class GraphicalLine extends GraphicalObject {
     }
 
     @Override
-    public GraphicalObject clone() {
-        return GraphicalLine.builder()
+    public GraphicalLineSection clone() {
+        return GraphicalLineSection.builder()
                 .startX(this.startX)
                 .startY(this.startY)
                 .endX(this.endX)
@@ -105,7 +116,7 @@ public class GraphicalLine extends GraphicalObject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GraphicalLine that = (GraphicalLine) o;
+        GraphicalLineSection that = (GraphicalLineSection) o;
         return startX == that.startX &&
                 startY == that.startY &&
                 endX == that.endX &&

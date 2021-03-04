@@ -1,4 +1,4 @@
-package sample.graphical.entity;
+package sample.graphical.entity.graphical;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,7 +6,7 @@ import javafx.scene.canvas.Canvas;
 import lombok.Builder;
 import lombok.Data;
 import sample.configuration.CanvasParametersWrapper;
-import sample.graphical.GraphicalObject;
+import sample.graphical.entity.PointHolder;
 
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -24,8 +24,8 @@ public class GraphicalPoint extends GraphicalObject {
     @Override
     public void draw(Canvas canvas, CanvasParametersWrapper parameters) {
        GraphicalPoint preparedPoint = prepare(parameters);
-        canvas.getGraphicsContext2D().fillOval(preparedPoint.getX(),
-                canvas.getHeight() - preparedPoint.getY(),
+        canvas.getGraphicsContext2D().fillOval( parameters.getPositionParameters().getOffset().getX() + preparedPoint.getX() * parameters.getScaleParameters().getScale(),
+                parameters.getPositionParameters().getOffset().getY() + canvas.getHeight() - preparedPoint.getY() * parameters.getScaleParameters().getScale(),
                 DRAW_RADIUS, DRAW_RADIUS);
     }
 
@@ -51,8 +51,11 @@ public class GraphicalPoint extends GraphicalObject {
     }
 
     @Override
-    public GraphicalPoint getRotationPoint() {
-        return this;
+    public PointHolder getRotationPoint() {
+        return PointHolder.builder()
+                .x(this.x)
+                .y(this.y)
+                .build();
     }
 
     @Override
@@ -67,6 +70,16 @@ public class GraphicalPoint extends GraphicalObject {
 
     @Override
     public int getMaxYCoordinate() {
+        return y;
+    }
+
+    @Override
+    public int getMinXCoordinate() {
+        return x;
+    }
+
+    @Override
+    public int getMinYCoordinate() {
         return y;
     }
 
@@ -100,8 +113,8 @@ public class GraphicalPoint extends GraphicalObject {
         return Objects.hash(x, y);
     }
 
-    private double coordinateToDrawable(int value, CanvasParametersWrapper parameters) {
-        return value * (parameters.getScaleParameters().getScale()) - DRAW_RADIUS / 2;
+    private double coordinateToDrawable(double value, CanvasParametersWrapper parameters) {
+        return value - DRAW_RADIUS / 2;
     }
 
 }

@@ -1,11 +1,11 @@
-package sample.graphical;
+package sample.graphical.entity.graphical;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
 import lombok.NoArgsConstructor;
 import sample.configuration.CanvasParametersWrapper;
-import sample.graphical.entity.GraphicalPoint;
+import sample.graphical.entity.PointHolder;
 
 
 @NoArgsConstructor
@@ -22,8 +22,8 @@ public abstract class GraphicalObject implements Cloneable {
         return FXCollections.observableArrayList("No params");
     }
 
-    public GraphicalPoint getRotationPoint() {
-        return GraphicalPoint.builder()
+    public PointHolder getRotationPoint() {
+        return PointHolder.builder()
                 .x(0)
                 .y(0)
                 .build();
@@ -41,6 +41,14 @@ public abstract class GraphicalObject implements Cloneable {
     }
 
     public int getMaxYCoordinate() {
+        return 0;
+    }
+
+    public int getMinXCoordinate() {
+        return 0;
+    }
+
+    public int getMinYCoordinate() {
         return 0;
     }
 

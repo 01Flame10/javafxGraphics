@@ -6,7 +6,7 @@ import sample.graphical.entity.PointHolder;
 
 @Data
 @Builder
-public class CanvasRotationParameters {
-    private double rotationDegrees;
-    private PointHolder rotationCenter;
+public class CanvasPositionParameters {
+    private PointHolder offset;
+    private PointHolder start;
 }
