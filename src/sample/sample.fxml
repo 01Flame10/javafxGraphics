@@ -85,7 +85,7 @@
                   <Button fx:id="executeGoalButton" layoutX="13.0" layoutY="400.0" mnemonicParsing="false" onAction="#onExecuteGoal" prefHeight="26.0" prefWidth="140.0" text="Rotate (0°)" />
                   <Button fx:id="deleteAllElementsButton" layoutX="10.0" layoutY="231.0" mnemonicParsing="false" onAction="#onDeleteAllElements" text="Delete all" />
                   <Slider fx:id="rotationSlider" layoutX="12.0" layoutY="344.0" max="360.0" showTickLabels="true" showTickMarks="true" />
-                  <CheckBox fx:id="rotationModeCheckbox" layoutX="13.0" layoutY="379.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="91.0" selected="true" text="Rotate All" />
+                  <CheckBox fx:id="rotationModeCheckbox" layoutX="13.0" layoutY="379.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="140.0" selected="true" text="Only selected" />
                   <Label fx:id="executionErrorsLabel" layoutX="14.0" layoutY="301.0" textFill="#a80000" />
                </children>
             </AnchorPane>

@@ -52,6 +52,7 @@ public class Controller implements Initializable {
 
     private static final int GRID_INTERVALS = 10;
     private static final double SCROLL_SENSITIVE_MULTIPLICATION = 0.0025;
+    private static final double SCALE_LIMIT = 0.1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -116,13 +117,13 @@ public class Controller implements Initializable {
             } else {
                 executionErrorsLabel.setText("");
                 parameters.getRotationParameters().setRotationCenter(objectList.get(index).getRotationPoint());
-                redrawElements(rotationModeCheckbox.isSelected() ? objectList : Collections.singletonList(objectList.get(index)));
+                redrawElements(rotationModeCheckbox.isSelected() ? Collections.singletonList(objectList.get(index)) : objectList);
             }
         });
 
         graphTable.setOnScroll(event -> {
                     if (event.getDeltaY() != 0) {
-                        if (parameters.getScaleParameters().getScale() < 0.01 && event.getDeltaY() < 0) {
+                        if (parameters.getScaleParameters().getScale() < SCALE_LIMIT && event.getDeltaY() < 0) {
                             executionErrorsLabel.setText("Stop scaling. Its stupid.");
                         } else {
                             executionErrorsLabel.setText("");
@@ -388,12 +389,12 @@ public class Controller implements Initializable {
     }
 
     private void redrawElements(List<GraphicalObject> list) {
-        if (parameters.getScaleParameters().getScale() < 0.01) {
-            executionErrorsLabel.setText("Stop scaling. Its stupid.");
-            return;
-        }
+//        if (parameters.getScaleParameters().getScale() < SCALE_LIMIT) {
+//            executionErrorsLabel.setText("Stop scaling. Its stupid.");
+//            return;
+//        }
         graphTable.getGraphicsContext2D().clearRect(0, 0, graphTable.getWidth(), graphTable.getHeight());
-        System.out.println("scale " + parameters.getScaleParameters().getScale());
+//        System.out.println("scale " + parameters.getScaleParameters().getScale());
         double lineParameter = GRID_INTERVALS * parameters.getScaleParameters().getScale();
         double counter = parameters.getPositionParameters().getOffset().getY();
         double counterIncrement = 10;
@@ -422,8 +423,13 @@ public class Controller implements Initializable {
             counter += counterIncrement;
         }
 
-        list.forEach(graphicalObject -> graphicalObject.draw(graphTable, parameters));
+//        graphTable.getGraphicsContext2D().setStroke(Color.RED);
+//        graphTable.getGraphicsContext2D().strokeLine(0, graphTable.getHeight() - parameters.getPositionParameters().getOffset().getY(),
+//                graphTable.getWidth(), graphTable.getHeight() - parameters.getPositionParameters().getOffset().getY());
+//        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
 
+
+        list.forEach(graphicalObject -> graphicalObject.draw(graphTable, parameters));
     }
 
     private void drawHullsOnFound(GraphicalPoint point1, GraphicalPoint point2, Supplier<Stream<Pair<GraphicalPoint, Integer>>> resultsSupplier) {
