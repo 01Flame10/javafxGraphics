@@ -24,15 +24,24 @@ public class GraphicalPicture extends GraphicalObject {
     private int centerX;
     private int centerY;
 
+    private double scaleX;
+    private double scaleY;
+    private int pointX;
+    private int pointY;
+
     private final List<GraphicalLineSection> graphicalLineSections = new ArrayList<>();
 
     public void addPointsToList(List<GraphicalLineSection> points) {
         graphicalLineSections.addAll(points);
     }
 
-    public GraphicalPicture(int centerX, int centerY) {
+    public GraphicalPicture(int centerX, int centerY, double scaleX, double scaleY, int pointX, int pointY) {
         this.centerX = centerX;
         this.centerY = centerY;
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
+        this.pointX = pointX;
+        this.pointY = pointY;
         System.out.println("Parse");
         Parser parser = new Parser();
         parser.parse(this);
@@ -47,10 +56,10 @@ public class GraphicalPicture extends GraphicalObject {
         int deltaY = centerY - canonicalCenterY;
         graphicalLineSections.forEach(o -> {
             GraphicalLineSection section = o.clone();
-            section.setStartX(section.getStartX() + deltaX);
-            section.setStartY(section.getStartY() + deltaY);
-            section.setEndX(section.getEndX() + deltaX);
-            section.setEndY(section.getEndY() + deltaY);
+            section.setStartX((int) ((section.getStartX() + deltaX) * scaleX + (1 - scaleX) * pointX));
+            section.setStartY((int) ((section.getStartY() + deltaY) * scaleY + (1 - scaleY) * pointY));
+            section.setEndX((int) ((section.getEndX() + deltaX) * scaleX + (1 - scaleX) * pointX));
+            section.setEndY((int) ((section.getEndY() + deltaY) * scaleY + (1 - scaleY) * pointY));
             section.draw(canvas, parameters);
         });
         canvas.getGraphicsContext2D().setLineWidth(lineWidth);
@@ -77,6 +86,10 @@ public class GraphicalPicture extends GraphicalObject {
         GraphicalPicture picture = GraphicalPicture.builder()
                 .centerY(getCenterY())
                 .centerX(getCenterX())
+                .scaleX(scaleX)
+                .scaleY(scaleY)
+                .pointX(pointX)
+                .pointY(pointY)
                 .build();
 
         picture.addPointsToList(getGraphicalLineSections());
@@ -113,7 +126,11 @@ public class GraphicalPicture extends GraphicalObject {
         return "GraphicalPicture{" +
                 "centerX=" + centerX +
                 ", centerY=" + centerY +
+                ", scaleX=" + scaleX +
+                ", scaleY=" + scaleY +
+                ", scaleX=" + pointX +
+                ", scaleY=" + pointY +
+                ", graphicalLineSections=" + graphicalLineSections +
                 '}';
     }
-
 }

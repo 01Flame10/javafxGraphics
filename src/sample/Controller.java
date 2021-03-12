@@ -87,7 +87,7 @@ public class Controller implements Initializable {
         graphTable.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) {
                 GraphicalObject object = GraphicalPoint.builder()
-                        .x((int) ((parameters.getPositionParameters().getOffset().getX() + event.getX()) / (parameters.getScaleParameters().getScale())))
+                        .x((int) ((event.getX() - parameters.getPositionParameters().getOffset().getX()) / (parameters.getScaleParameters().getScale())))
                         .y((int) ((parameters.getPositionParameters().getOffset().getY() + graphTable.getHeight() - event.getY()) / (parameters.getScaleParameters().getScale())))
                         .build();
 
@@ -376,7 +376,12 @@ public class Controller implements Initializable {
                     .forEach(field -> {
                         try {
                             field.setAccessible(true);
-                            field.set(currentObject, Integer.parseInt(parameterValueInput.getText().trim()));
+                            System.out.println("field " + field.getType() + " - " + int.class.equals(field.getType()) + " - " + double.class.equals(field.getType()));
+                            if (int.class.equals(field.getType())) {
+                                field.set(currentObject, Integer.parseInt(parameterValueInput.getText().trim()));
+                            } else if (double.class.equals(field.getType())) {
+                                field.set(currentObject, Double.parseDouble(parameterValueInput.getText().trim()));
+                            }
                             objectsParametersList.getItems()
                                     .set(objectsParametersList.getSelectionModel().getSelectedIndex(),
                                             field.getName() + " = " + parameterValueInput.getText());
@@ -405,30 +410,26 @@ public class Controller implements Initializable {
         }
 
 
-        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
-        for (double i = 0; i < graphTable.getWidth(); i += lineParameter) {
-            graphTable.getGraphicsContext2D().strokeLine(i, 0, i, graphTable.getHeight());
+        graphTable.getGraphicsContext2D().setStroke(Color.GRAY);
+        for (double i = - parameters.getPositionParameters().getOffset().getX(); i < graphTable.getWidth(); i += lineParameter) {
+            graphTable.getGraphicsContext2D().strokeLine(parameters.getPositionParameters().getOffset().getX() + i, 0,
+                    parameters.getPositionParameters().getOffset().getX() + i, graphTable.getHeight());
         }
 
-        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
-        for (double i = graphTable.getHeight(); i > 0; i -= lineParameter) {
-//            if (counter < 0 && counter + counterIncrement > 0)
-//                graphTable.getGraphicsContext2D().setStroke(Color.RED);
-//            else
-//                graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
-
-            graphTable.getGraphicsContext2D().strokeLine(0, i, graphTable.getWidth(), i);
+        for (double i = graphTable.getHeight(); i > parameters.getPositionParameters().getOffset().getY(); i -= lineParameter) {
+            graphTable.getGraphicsContext2D().strokeLine(0, i - parameters.getPositionParameters().getOffset().getY(), graphTable.getWidth(), i - parameters.getPositionParameters().getOffset().getY());
             graphTable.getGraphicsContext2D().strokeText(doubleFormatter.format(counter), 0, i);
 
             counter += counterIncrement;
         }
 
-//        graphTable.getGraphicsContext2D().setStroke(Color.RED);
-//        graphTable.getGraphicsContext2D().strokeLine(0, graphTable.getHeight() - parameters.getPositionParameters().getOffset().getY(),
-//                graphTable.getWidth(), graphTable.getHeight() - parameters.getPositionParameters().getOffset().getY());
-//        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
+        graphTable.getGraphicsContext2D().setStroke(Color.BLACK);
+        graphTable.getGraphicsContext2D().strokeLine(0, graphTable.getHeight() + parameters.getPositionParameters().getOffset().getY(),
+                graphTable.getWidth(), graphTable.getHeight() + parameters.getPositionParameters().getOffset().getY());
+        graphTable.getGraphicsContext2D().strokeLine(parameters.getPositionParameters().getOffset().getX(), 0,
+                parameters.getPositionParameters().getOffset().getX(), graphTable.getHeight());
 
-
+        graphTable.getGraphicsContext2D().setStroke(Color.DARKGRAY);
         list.forEach(graphicalObject -> graphicalObject.draw(graphTable, parameters));
     }
 
